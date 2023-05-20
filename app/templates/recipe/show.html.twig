@@ -19,7 +19,7 @@
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  recipe.category.title }}</dd>
             <dt>{{ 'label.content'|trans }}</dt>
-            <dd>{{  recipe.content }}</dd>
+            <dd>{{  recipe.content|nl2br }}</dd>
         </dl>
         <p>
             <a href="{{ url('recipe_index') }}" title="{{ 'action.back_to_list'|trans }}">

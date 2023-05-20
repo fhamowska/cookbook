@@ -5,6 +5,7 @@
 
 namespace App\Service;
 
+use App\Entity\Recipe;
 use App\Repository\RecipeRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -27,8 +28,8 @@ class RecipeService implements RecipeServiceInterface
     /**
      * Constructor.
      *
-     * @param RecipeRepository   $recipeRepository Recipe repository
-     * @param PaginatorInterface $paginator        Paginator
+     * @param RecipeRepository     $recipeRepository Recipe repository
+     * @param PaginatorInterface $paginator      Paginator
      */
     public function __construct(RecipeRepository $recipeRepository, PaginatorInterface $paginator)
     {
@@ -51,4 +52,25 @@ class RecipeService implements RecipeServiceInterface
             RecipeRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
+
+    /**
+     * Save entity.
+     *
+     * @param Recipe $recipe Recipe entity
+     */
+    public function save(Recipe $recipe): void
+    {
+        $this->recipeRepository->save($recipe);
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Recipe $recipe Recipe entity
+     */
+    public function delete(Recipe $recipe): void
+    {
+        $this->recipeRepository->delete($recipe);
+    }
+
 }

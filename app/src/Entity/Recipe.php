@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Recipe entity.
  */
@@ -8,6 +9,8 @@ namespace App\Entity;
 use App\Repository\RecipeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Recipe.
@@ -29,17 +32,21 @@ class Recipe
     /**
      * Created at.
      *
-     * @psalm-suppress PropertyNotSetInConstructor
+     * @var \DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\Type(\DateTimeImmutable::class)]
+    #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeImmutable $createdAt;
 
     /**
      * Updated at.
      *
-     * @psalm-suppress PropertyNotSetInConstructor
+     * @var \DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\Type(\DateTimeImmutable::class)]
+    #[Gedmo\Timestampable(on: 'update')]
     private ?\DateTimeImmutable $updatedAt;
 
     /**
@@ -150,11 +157,18 @@ class Recipe
         return $this->category;
     }
 
-    public function setCategory(?Category $category): void
+    public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
     }
 
+    /**
+     * Getter for content.
+     *
+     * @return string|null Content
+     */
     public function getContent(): ?string
     {
         return $this->content;
