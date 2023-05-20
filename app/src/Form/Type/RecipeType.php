@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Entity\Tag;
 
 /**
  * Class RecipeType.
@@ -40,7 +41,8 @@ class RecipeType extends AbstractType
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
         $builder->add(
             'category',
             EntityType::class,
@@ -52,7 +54,8 @@ class RecipeType extends AbstractType
                 'label' => 'label.category',
                 'placeholder' => 'label.none',
                 'required' => true,
-            ]);
+            ]
+        );
         $builder->add(
             'content',
             TextareaType::class,
@@ -62,8 +65,23 @@ class RecipeType extends AbstractType
                 'attr' =>
                     [
                         'max_length' => 8000,
-                        'rows' => 20
+                        'rows' => 20,
                     ],
+            ]
+        );
+        $builder->add(
+            'tags',
+            EntityType::class,
+            [
+                'class' => Tag::class,
+                'choice_label' => function ($tag): string {
+                    return $tag->getTitle();
+                },
+                'label' => 'label.tags',
+                'placeholder' => 'label.none',
+                'required' => false,
+                'expanded' => true,
+                'multiple' => true,
             ]
         );
     }

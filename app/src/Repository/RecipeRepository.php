@@ -116,5 +116,4 @@ class RecipeRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('recipe');
     }
-
 }

@@ -28,8 +28,8 @@ class RecipeService implements RecipeServiceInterface
     /**
      * Constructor.
      *
-     * @param RecipeRepository     $recipeRepository Recipe repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param RecipeRepository   $recipeRepository Recipe repository
+     * @param PaginatorInterface $paginator        Paginator
      */
     public function __construct(RecipeRepository $recipeRepository, PaginatorInterface $paginator)
     {
@@ -72,5 +72,4 @@ class RecipeService implements RecipeServiceInterface
     {
         $this->recipeRepository->delete($recipe);
     }
-
 }
