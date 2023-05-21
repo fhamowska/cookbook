@@ -20,6 +20,12 @@
             <dd>{{  recipe.category.title }}</dd>
             <dt>{{ 'label.content'|trans }}</dt>
             <dd>{{  recipe.content|nl2br }}</dd>
+            <dt>{{ 'label.tags'|trans }}</dt>
+            <dd>
+                {% for item in recipe.tags %}
+                    {{ item.title }}{% if not loop.last %},{% endif %}
+                {% endfor %}
+            </dd>
         </dl>
         <p>
             <a href="{{ url('recipe_index') }}" title="{{ 'action.back_to_list'|trans }}">
