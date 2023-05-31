@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Recipe entity.
  */
@@ -33,8 +32,6 @@ class Recipe
 
     /**
      * Created at.
-     *
-     * @var \DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(\DateTimeImmutable::class)]
@@ -43,8 +40,6 @@ class Recipe
 
     /**
      * Updated at.
-     *
-     * @var \DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(\DateTimeImmutable::class)]
@@ -64,8 +59,16 @@ class Recipe
      * Category.
      *
      * @var Category
+     *
+     * * @ORM\ManyToOne(
+     *     targetEntity="App\Entity\Category",
+     *     inversedBy="recipes",
+     *     fetch="EXTRA_LAZY",
+     * )
+     * @ORM\JoinTable(name="recipes_categories")
+     *
      */
-    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
@@ -74,16 +77,23 @@ class Recipe
 
     /**
      * Slug.
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Gedmo\Slug(fields: ['title'])]
     private ?string $slug;
-
     /**
      * Tags.
      *
-     * @var ArrayCollection<int, Tag>
+     * @var array
+     *
+     * @ORM\ManyToMany(
+     *     targetEntity="App\Entity\Tag",
+     *     inversedBy="recipes",
+     *     fetch="EXTRA_LAZY",
+     * )
+     * @ORM\JoinTable(name="recipes_tags")
+     *
+     * @Assert\Type(type="Doctrine\Common\Collections\Collection")
      */
     #[Assert\Valid]
     #[ORM\ManyToMany(targetEntity: Tag::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]

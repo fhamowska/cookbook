@@ -71,6 +71,8 @@ class Category
     #[Gedmo\Slug(fields: ['title'])]
     private ?string $slug;
 
+
+
     /**
      * Getter for Id.
      *

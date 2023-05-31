@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * Class RecipeController.
@@ -35,7 +36,7 @@ class RecipeController extends AbstractController
      * Constructor.
      *
      * @param RecipeServiceInterface $recipeService Recipe service
-     * @param TranslatorInterface  $translator  Translator
+     * @param TranslatorInterface    $translator    Translator
      */
     public function __construct(RecipeServiceInterface $recipeService, TranslatorInterface $translator)
     {
@@ -67,7 +68,7 @@ class RecipeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}', name: 'recipe_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
+    #[Route('/{id}', name: 'recipe_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET', )]
     public function show(Recipe $recipe): Response
     {
         return $this->render('recipe/show.html.twig', ['recipe' => $recipe]);
@@ -81,6 +82,7 @@ class RecipeController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/create', name: 'recipe_create', methods: 'GET|POST', )]
+    #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
         $recipe = new Recipe();
@@ -102,18 +104,19 @@ class RecipeController extends AbstractController
             return $this->redirectToRoute('recipe_index');
         }
 
-        return $this->render('recipe/create.html.twig',  ['form' => $form->createView()]);
+        return $this->render('recipe/create.html.twig', ['form' => $form->createView()]);
     }
 
     /**
      * Edit action.
      *
      * @param Request $request HTTP request
-     * @param Recipe    $recipe    Recipe entity
+     * @param Recipe  $recipe  Recipe entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'recipe_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Recipe $recipe): Response
     {
         $form = $this->createForm(
@@ -150,11 +153,12 @@ class RecipeController extends AbstractController
      * Delete action.
      *
      * @param Request $request HTTP request
-     * @param Recipe    $recipe    Recipe entity
+     * @param Recipe  $recipe  Recipe entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'recipe_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Recipe $recipe): Response
     {
         $form = $this->createForm(
