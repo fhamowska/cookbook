@@ -65,8 +65,8 @@ class Recipe
      *     inversedBy="recipes",
      *     fetch="EXTRA_LAZY",
      * )
-     * @ORM\JoinTable(name="recipes_categories")
      *
+     * @ORM\JoinTable(name="recipes_categories")
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
@@ -91,6 +91,7 @@ class Recipe
      *     inversedBy="recipes",
      *     fetch="EXTRA_LAZY",
      * )
+     *
      * @ORM\JoinTable(name="recipes_tags")
      *
      * @Assert\Type(type="Doctrine\Common\Collections\Collection")

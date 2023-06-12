@@ -9,7 +9,6 @@ use App\Entity\Category;
 use App\Entity\Recipe;
 use App\Form\DataTransformer\TagsDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -24,8 +23,6 @@ class RecipeType extends AbstractType
 {
     /**
      * Tags data transformer.
-     *
-     * @var TagsDataTransformer
      */
     private TagsDataTransformer $tagsDataTransformer;
 
@@ -80,8 +77,7 @@ class RecipeType extends AbstractType
             [
                 'label' => 'label.content',
                 'required' => true,
-                'attr' =>
-                    [
+                'attr' => [
                         'max_length' => 8000,
                         'rows' => 20,
                     ],

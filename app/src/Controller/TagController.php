@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\Tag;
 use App\Form\Type\TagType;
 use App\Service\TagServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,6 +20,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  * Class TagController.
  */
 #[Route('/tag')]
+#[IsGranted('ROLE_ADMIN')]
 class TagController extends AbstractController
 {
     /**
@@ -35,7 +37,7 @@ class TagController extends AbstractController
      * Constructor.
      *
      * @param TagServiceInterface $recipeService Recipe service
-     * @param TranslatorInterface      $translator    Translator
+     * @param TranslatorInterface $translator    Translator
      */
     public function __construct(TagServiceInterface $recipeService, TranslatorInterface $translator)
     {
@@ -116,8 +118,8 @@ class TagController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param Tag $tag Tag entity
+     * @param Request $request HTTP request
+     * @param Tag     $tag     Tag entity
      *
      * @return Response HTTP response
      */
@@ -157,8 +159,8 @@ class TagController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param Tag $tag Tag entity
+     * @param Request $request HTTP request
+     * @param Tag     $tag     Tag entity
      *
      * @return Response HTTP response
      */

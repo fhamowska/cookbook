@@ -1,6 +1,5 @@
 <?php
 
-
 // CategoryService.php
 
 namespace App\Service;

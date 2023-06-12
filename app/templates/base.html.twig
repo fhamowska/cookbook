@@ -18,10 +18,6 @@
         <div>
             <a class="btn btn-outline-primary" href="{{ url('app_logout') }}">{{ 'action_logout'|trans }}</a>
         </div>
-    {% else %}
-        <div>
-            <a class="btn btn-outline-primary" href="{{ url('app_login') }}">{{ 'action_login'|trans }}</a>
-        </div>
     {% endif %}
     <div class="container-fluid">
         {% include 'default/_flash_messages.html.twig' %}

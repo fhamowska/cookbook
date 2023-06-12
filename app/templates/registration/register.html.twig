@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'label.registration'|trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'label.registration'|trans }}</h1>
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.email, {
+        label: 'label.email'|trans
+    }) }}
+    {{ form_row(registrationForm.password, {
+        label: 'label.pass'|trans
+    }) }}
+
+    <button type="submit" class="btn btn-lg btn-primary">{{ 'action.register'|trans }}</button>
+    {{ form_end(registrationForm) }}
+    <p><a href="{{ url('app_login') }}" title="{{ 'label.login'|trans }}">
+            {{ 'label.login'|trans }}
+        </a></p>
+{% endblock %}
