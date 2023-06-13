@@ -51,6 +51,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password;
 
     /**
+     * converter to string.
+     *
+     * @return string getUserIdentifier
+     */
+    public function __toString()
+    {
+        return $this->getUserIdentifier();
+    }
+
+    /**
      * Getter for id.
      *
      * @return int|null Id
