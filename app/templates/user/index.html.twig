@@ -6,12 +6,6 @@
 
 {% block body %}
     <h1>{{ 'title.user_list'|trans }}</h1>
-    <p><a href="{{ url('category_index') }}" title="{{ 'category.event_list'|trans }}">
-            {{ 'category.event_list'|trans }}
-        </a></p>
-    <p><a href="{{ url('tag_index') }}" title="{{ 'title.tag_list'|trans }}">
-            {{ 'title.tag_list'|trans }}
-        </a></p>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -32,9 +26,9 @@
                     <td>{{ user.id }}</td>
                     <td>{{ user.email }}</td>
                     <td>
-                        <a class="btn btn-outline-danger" href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'action.edit_profile'|trans }}">
-                            {{ 'action.edit_profile'|trans }}
-                        </a>
+                        <a class="btn btn-outline-primary" href="{{ url('user_edit', {id: user.id}) }}">{{ 'action_edit_password'|trans }}</a>
+                        <a class="btn btn-outline-primary" href="{{ url('user_edit_email', {id: user.id}) }}">{{ 'action_edit_email'|trans }}</a>
+                        <a class="btn btn-outline-primary" href="{{ url('user_delete', {id: user.id}) }}">{{ 'action_delete_user'|trans }}</a>
                     </td>
                 </tr>
             {% endfor %}

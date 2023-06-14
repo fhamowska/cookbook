@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+
 /**
  * Class SecuritytController.
  */
@@ -42,7 +43,7 @@ class SecurityController extends AbstractController
      * Logout action.
      */
     #[Route(path: '/logout', name: 'app_logout')]
-    public function logout(): void
+    public function logout(): Response
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }

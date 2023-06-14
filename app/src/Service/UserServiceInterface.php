@@ -39,4 +39,6 @@ interface UserServiceInterface
      * @throws NonUniqueResultException
      */
     public function findOneById(int $id): ?User;
+
+    public function delete(User $user): void;
 }

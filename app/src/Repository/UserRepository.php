@@ -95,4 +95,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         return $queryBuilder ?? $this->createQueryBuilder('user');
     }
+
+    /**
+     * Delete record.
+     *
+     * @param \App\Entity\User $user User entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(User $user): void
+    {
+        $this->_em->remove($user);
+        $this->_em->flush($user);
+    }
 }

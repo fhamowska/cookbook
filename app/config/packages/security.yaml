@@ -25,7 +25,7 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-                target: app_login
+                target: recipe_index
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -44,7 +44,6 @@ security:
         - { path: ^/recipe, roles: PUBLIC_ACCESS}
         - { path: ^/register, roles: PUBLIC_ACCESS}
         - { path: ^/login, roles: PUBLIC_ACCESS}
-        - { path: ^/, roles: ROLE_USER}
         - { path: ^/user/all, roles: ROLE_ADMIN}
 
 
