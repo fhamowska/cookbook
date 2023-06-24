@@ -34,12 +34,19 @@
             </dd>
         </dl>
         <p>
-            <a href="{{ url('recipe_index') }}" title="{{ 'action.back_to_list'|trans }}">
+            <a class="btn btn-outline-primary" href="{{ url('recipe_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}
             </a>
         </p>
+        <h4>{{ 'label.comments'|trans }}</h4>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a class="btn btn-outline-primary" href="{{ url('comment_create', {id: recipe.id}) }}" title="{{ 'action.comment'|trans }}">
+                {{ 'action.comment'|trans }}
+            </a>
+        {% else %}
+            <a class="btn btn-outline-primary" href="{{ url('app_login') }}">{{ 'action_login_to_comment'|trans }}</a>
+        {% endif %}
         {% if recipe.comments is defined and recipe.comments|length %}
-            <h4>{{ 'label.comments'|trans }}</h4>
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
@@ -51,13 +58,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a class="btn btn-outline-primary" href="{{ url('comment_create', {id: recipe.id}) }}" title="{{ 'action.comment'|trans }}">
-                        {{ 'action.comment'|trans }}
-                    </a>
-                {% else %}
-                    <a class="btn btn-outline-primary" href="{{ url('app_login') }}">{{ 'action_login_to_comment'|trans }}
-                {% endif %}
                 {% for comment in recipe.comments %}
                     <tr>
                         <td>{{ comment.email }}</td>

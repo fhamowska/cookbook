@@ -41,11 +41,21 @@
                     <td>{{ recipe.createdAt|format_date('long') }}</td>
                     <td>{{ recipe.updatedAt|format_date('long') }}</td>
                     <td>{{ recipe.title }}</td>
-                    <td>{{ recipe.category.title }}</td>
                     <td>
-                        {% for item in recipe.tags %}
-                            {{ item.title }}{% if not loop.last %},{% endif %}
+                        <a class="btn btn-outline-primary" href="{{ url('recipe_index', {'filters.category_id' : recipe.category.id}) }}" title="{{ recipe.category.title }}">
+                            {{ recipe.category.title }}
+                        </a>
+                    </td>
+                    <td>
+                    {% if recipe.tags is defined and recipe.tags|length %}
+                        {% for tag in recipe.tags %}
+                            <a class="btn btn-outline-primary" href="{{ url('recipe_index', {'filters.tag_id' : tag.id}) }}" title="{{ tag.title }}">
+                                {{ tag.title }}
+                            </a>
                         {% endfor %}
+                    {% else %}
+                        &nbsp;
+                    {% endif %}
                     </td>
                     <td>
                         <a class="btn btn-outline-primary" href="{{ url('recipe_show', {id: recipe.id}) }}" title="{{ 'action.show'|trans }}">
