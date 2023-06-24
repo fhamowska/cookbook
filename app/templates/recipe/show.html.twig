@@ -18,6 +18,12 @@
             <dd>{{  recipe.title }}</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  recipe.category.title }}</dd>
+            <dt>{{ 'label.ingredients'|trans }}</dt>
+            <dd>
+                {% for item in recipe.ingredients %}
+                    {{ item.title }}{% if not loop.last %},{% endif %}
+                {% endfor %}
+            </dd>
             <dt>{{ 'label.content'|trans }}</dt>
             <dd>{{  recipe.content|nl2br }}</dd>
             <dt>{{ 'label.tags'|trans }}</dt>

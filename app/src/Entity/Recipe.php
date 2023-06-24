@@ -52,9 +52,6 @@ class Recipe
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $comment = null;
-
     /**
      * Category.
      *
@@ -81,10 +78,11 @@ class Recipe
     #[ORM\Column(type: 'string', length: 64)]
     #[Gedmo\Slug(fields: ['title'])]
     private ?string $slug;
+
     /**
      * Tags.
      *
-     * @var array
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(
      *     targetEntity="App\Entity\Tag",
@@ -99,11 +97,41 @@ class Recipe
     #[Assert\Valid]
     #[ORM\ManyToMany(targetEntity: Tag::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
     #[ORM\JoinTable(name: 'recipes_tags')]
-    private $tags;
+    private Collection $tags;
+
+    /**
+     * Ingredients.
+     *
+     * @var array
+     *
+     * @ORM\ManyToMany(
+     *     targetEntity="App\Entity\Ingredient",
+     *     inversedBy="recipes",
+     *     fetch="EXTRA_LAZY",
+     * )
+     *
+     * @ORM\JoinTable(name="recipes_ingredients")
+     *
+     * @Assert\Type(type="Doctrine\Common\Collections\Collection")
+     */
+    #[Assert\Valid]
+    #[ORM\ManyToMany(targetEntity: Ingredient::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
+    #[ORM\JoinTable(name: 'recipes_ingredients')]
+    private $ingredients;
+
+    /**
+     * Comments.
+     *
+     * @var Comment|null
+     */
+    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Comment::class, orphanRemoval: true)]
+    private $comments;
 
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->ingredients = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -174,18 +202,6 @@ class Recipe
     public function setTitle(?string $title): void
     {
         $this->title = $title;
-    }
-
-    public function getComment(): ?string
-    {
-        return $this->comment;
-    }
-
-    public function setComment(?string $comment): self
-    {
-        $this->comment = $comment;
-
-        return $this;
     }
 
     public function getCategory(): ?Category
@@ -262,5 +278,82 @@ class Recipe
     public function removeTag(Tag $tag): void
     {
         $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Getter for ingredients.
+     *
+     * @return Collection<int, Ingredient> Ingredients collection
+     */
+    public function getIngredients(): Collection
+    {
+        return $this->ingredients;
+    }
+
+    /**
+     * Add ingredient.
+     *
+     * @param Ingredient $ingredient Ingredient entity
+     */
+    public function addIngredient(Ingredient $ingredient): void
+    {
+        if (!$this->ingredients->contains($ingredient)) {
+            $this->ingredients[] = $ingredient;
+        }
+    }
+
+    /**
+     * Remove ingredient.
+     *
+     * @param Ingredient $ingredient Ingredient entity
+     */
+    public function removeIngredient(Ingredient $ingredient): void
+    {
+        $this->ingredients->removeElement($ingredient);
+    }
+
+    /**
+     * Getter for comments.
+     *
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Add comment.
+     *
+     * @param Comment $comment Comment
+     *
+     * @return $this
+     */
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove comment.
+     *
+     * @param Comment $comment Comment
+     *
+     * @return $this
+     */
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            if ($comment->getRecipe() === $this) {
+                $comment->setRecipe(null);
+            }
+        }
+
+        return $this;
     }
 }

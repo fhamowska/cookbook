@@ -2,17 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\TagRepository;
+use App\Repository\IngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: TagRepository::class)]
-#[ORM\Table(name: 'tags')]
-#[ORM\UniqueConstraint(name: 'uq_tags_title', columns: ['title'])]
+#[ORM\Entity(repositoryClass: IngredientRepository::class)]
+#[ORM\Table(name: 'ingredients')]
 #[UniqueEntity(fields: ['title'])]
-class Tag
+class Ingredient
 {
     /**
      * Primary key.

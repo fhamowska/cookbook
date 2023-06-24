@@ -7,6 +7,7 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\Entity\Recipe;
+use App\Form\DataTransformer\IngredientsDataTransformer;
 use App\Form\DataTransformer\TagsDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -27,13 +28,19 @@ class RecipeType extends AbstractType
     private TagsDataTransformer $tagsDataTransformer;
 
     /**
+     * Ingredients data transformer.
+     */
+    private IngredientsDataTransformer $ingredientsDataTransformer;
+
+    /**
      * Constructor.
      *
      * @param TagsDataTransformer $tagsDataTransformer Tags data transformer
      */
-    public function __construct(TagsDataTransformer $tagsDataTransformer)
+    public function __construct(TagsDataTransformer $tagsDataTransformer, IngredientsDataTransformer $ingredientDataTransformer)
     {
         $this->tagsDataTransformer = $tagsDataTransformer;
+        $this->ingredientsDataTransformer = $ingredientDataTransformer;
     }
 
     /**
@@ -71,6 +78,21 @@ class RecipeType extends AbstractType
                 'required' => true,
             ]
         );
+
+        $builder->add(
+            'ingredients',
+            TextType::class,
+            [
+                'label' => 'label.ingredients',
+                'required' => false,
+                'attr' => ['max_length' => 128],
+            ]
+        );
+
+        $builder->get('ingredients')->addModelTransformer(
+            $this->ingredientsDataTransformer
+        );
+
         $builder->add(
             'content',
             TextareaType::class,
@@ -81,21 +103,6 @@ class RecipeType extends AbstractType
                         'max_length' => 8000,
                         'rows' => 20,
                     ],
-            ]
-        );
-        $builder->add(
-            'tags',
-            EntityType::class,
-            [
-                'class' => Tag::class,
-                'choice_label' => function ($tag): string {
-                    return $tag->getTitle();
-                },
-                'label' => 'label.tags',
-                'placeholder' => 'label.none',
-                'required' => false,
-                'expanded' => true,
-                'multiple' => true,
             ]
         );
         $builder->add(

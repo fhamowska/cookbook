@@ -1,24 +1,24 @@
 <?php
 /**
- * Tag repository.
+ * Ingredient repository.
  */
 
 namespace App\Repository;
 
-use App\Entity\Tag;
+use App\Entity\Ingredient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
- * @method Tag|null findOneBy(array $criteria, array $orderBy = null)
- * @method Tag[]    findAll()
- * @method Tag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Ingredient|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Ingredient|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Ingredient[]    findAll()
+ * @method Ingredient[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  *
- * @extends ServiceEntityRepository<Tag>
+ * @extends ServiceEntityRepository<Ingredient>
  */
-class TagRepository extends ServiceEntityRepository
+class IngredientRepository extends ServiceEntityRepository
 {
     /**
      * Items per page.
@@ -38,7 +38,7 @@ class TagRepository extends ServiceEntityRepository
      */
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Tag::class);
+        parent::__construct($registry, Ingredient::class);
     }
 
     /**
@@ -49,8 +49,8 @@ class TagRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('partial tag.{id, createdAt, updatedAt, title}')
-            ->orderBy('tag.updatedAt', 'DESC');
+            ->select('partial ingredient.{id, createdAt, updatedAt, title}')
+            ->orderBy('ingredient.updatedAt', 'DESC');
     }
 
     /**
@@ -62,28 +62,28 @@ class TagRepository extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('tag');
+        return $queryBuilder ?? $this->createQueryBuilder('ingredient');
     }
 
     /**
      * Save entity.
      *
-     * @param Tag $tag Tag entity
+     * @param Ingredient $ingredient Ingredient entity
      */
-    public function save(Tag $tag): void
+    public function save(Ingredient $ingredient): void
     {
-        $this->_em->persist($tag);
+        $this->_em->persist($ingredient);
         $this->_em->flush();
     }
 
     /**
      * Delete entity.
      *
-     * @param Tag $tag Tag entity
+     * @param Ingredient $ingredient Ingredient entity
      */
-    public function delete(Tag $tag): void
+    public function delete(Ingredient $ingredient): void
     {
-        $this->_em->remove($tag);
+        $this->_em->remove($ingredient);
         $this->_em->flush();
     }
 }

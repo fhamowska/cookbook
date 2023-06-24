@@ -1,30 +1,57 @@
 <?php
-
-// TagService.php
+/**
+ * Tag service.
+ */
 
 namespace App\Service;
 
+use App\Repository\RecipeRepository;
 use App\Entity\Tag;
 use App\Repository\TagRepository;
-use App\Repository\RecipeRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 
+/**
+ * Class TagService.
+ */
 class TagService implements TagServiceInterface
 {
+    /**
+     * Tag repository.
+     */
     private TagRepository $tagRepository;
+
+    /**
+     * Recipe repository.
+     */
     private RecipeRepository $recipeRepository;
+
+    /**
+     * Paginator.
+     */
     private PaginatorInterface $paginator;
 
-    public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator, RecipeRepository $recipeRepository)
+    /**
+     * Constructor.
+     *
+     * @param TagRepository      $tagRepository   Tag repository
+     * @param PaginatorInterface $paginator       Paginator
+     * @param RecipeRepository    $recipeRepository Recipe repository
+     */
+    public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator, \App\Repository\RecipeRepository $recipeRepository)
     {
         $this->tagRepository = $tagRepository;
         $this->paginator = $paginator;
         $this->recipeRepository = $recipeRepository;
     }
 
+    /**
+     * Get paginated list.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
     public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
@@ -37,39 +64,21 @@ class TagService implements TagServiceInterface
     /**
      * Save entity.
      *
-     * @param Tag $tag Tag entity
+     * @param Tag $tags Tag entity
      */
-    public function save(Tag $tag): void
+    public function save(Tag $tags): void
     {
-        $this->tagRepository->save($tag);
+        $this->tagRepository->save($tags);
     }
 
     /**
      * Delete entity.
      *
-     * @param Tag $tag Tag entity
+     * @param Tag $tags Tag entity
      */
-    public function delete(Tag $tag): void
+    public function delete(Tag $tags): void
     {
-        $this->tagRepository->delete($tag);
-    }
-
-    /**
-     * Can Tag be deleted?
-     *
-     * @param Tag $tag Tag entity
-     *
-     * @return bool Result
-     */
-    public function canBeDeleted(Tag $tag): bool
-    {
-        try {
-            $result = $this->recipeRepository->countByTag($tag);
-
-            return !($result > 0);
-        } catch (NoResultException|NonUniqueResultException) {
-            return false;
-        }
+        $this->tagRepository->delete($tags);
     }
 
     /**
@@ -82,5 +91,19 @@ class TagService implements TagServiceInterface
     public function findOneByTitle(string $title): ?Tag
     {
         return $this->tagRepository->findOneByTitle($title);
+    }
+
+    /**
+     * Find by id.
+     *
+     * @param int $id Tag id
+     *
+     * @return Tag|null Tag entity
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneById(int $id): ?Tag
+    {
+        return $this->tagRepository->findOneById($id);
     }
 }

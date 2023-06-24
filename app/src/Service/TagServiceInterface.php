@@ -25,25 +25,16 @@ interface TagServiceInterface
     /**
      * Save entity.
      *
-     * @param Tag $tag Tag entity
+     * @param Tag $tags Tag entity
      */
-    public function save(Tag $tag): void;
+    public function save(Tag $tags): void;
 
     /**
      * Delete entity.
      *
-     * @param Tag $tag Tag entity
+     * @param Tag $tags Tag entity
      */
-    public function delete(Tag $tag): void;
-
-    /**
-     * Can Tag be deleted?
-     *
-     * @param Tag $tag Tag entity
-     *
-     * @return bool Result
-     */
-    public function canBeDeleted(Tag $tag): bool;
+    public function delete(Tag $tags): void;
 
     /**
      * Find by title.
@@ -53,4 +44,15 @@ interface TagServiceInterface
      * @return Tag|null Tag entity
      */
     public function findOneByTitle(string $title): ?Tag;
+
+    /**
+     * Find by id.
+     *
+     * @param int $id Tag id
+     *
+     * @return Tag|null Tag entity
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneById(int $id): ?Tag;
 }
