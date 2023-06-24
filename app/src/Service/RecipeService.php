@@ -72,4 +72,9 @@ class RecipeService implements RecipeServiceInterface
     {
         $this->recipeRepository->delete($recipe);
     }
+
+    public function getById(int $id): ?Recipe
+    {
+        return $this->recipeRepository->find($id);
+    }
 }

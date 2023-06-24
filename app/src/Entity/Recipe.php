@@ -124,7 +124,7 @@ class Recipe
      *
      * @var Comment|null
      */
-    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Comment::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Comment::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
     private $comments;
 
     public function __construct()

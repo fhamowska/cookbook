@@ -38,6 +38,43 @@
                 {{ 'action.back_to_list'|trans }}
             </a>
         </p>
+        {% if recipe.comments is defined and recipe.comments|length %}
+            <h4>{{ 'label.comments'|trans }}</h4>
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">{{ 'label.email'|trans }}</th>
+                    <th scope="col">{{ 'label.content'|trans }}</th>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <th>{{ 'label.actions'|trans }}</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a class="btn btn-outline-primary" href="{{ url('comment_create', {id: recipe.id}) }}" title="{{ 'action.comment'|trans }}">
+                        {{ 'action.comment'|trans }}
+                    </a>
+                {% else %}
+                    <a class="btn btn-outline-primary" href="{{ url('app_login') }}">{{ 'action_login_to_comment'|trans }}
+                {% endif %}
+                {% for comment in recipe.comments %}
+                    <tr>
+                        <td>{{ comment.email }}</td>
+                        <td>{{ comment.content }}</td>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <td>
+                                <a href="{{ url('comment_delete', {id: comment.id}) }}"
+                                   title="{{ 'action.delete'|trans }}">
+                                    {{ 'action.delete'|trans }}
+                                </a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
     {% else %}
         <p>
             {{ 'message.record_not_found'|trans }}
