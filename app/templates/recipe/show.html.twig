@@ -60,16 +60,15 @@
                 <tbody>
                 {% for comment in recipe.comments %}
                     <tr>
-                        <td>{{ comment.email }}</td>
+                        <td>{{ comment.author.email }}</td>
                         <td>{{ comment.content }}</td>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <td>
-                                <a href="{{ url('comment_delete', {id: comment.id}) }}"
-                                   title="{{ 'action.delete'|trans }}">
+                        <td>
+                            {% if is_granted('DELETE', comment) or is_granted('ROLE_ADMIN') %}
+                                <a class="btn btn-outline-danger" href="{{ url('comment_delete', {id: comment.id}) }}" title="{{ 'action.delete'|trans }}">
                                     {{ 'action.delete'|trans }}
                                 </a>
-                            </td>
-                        {% endif %}
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

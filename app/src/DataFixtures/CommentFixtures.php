@@ -7,6 +7,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Comment;
 use App\Entity\Recipe;
+use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -32,11 +33,14 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
         $this->createMany(100, 'comments', function (int $i) {
             $comment = new Comment();
             $comment->setContent($this->faker->text);
-            $comment->setEmail($this->getRandomReference('users'));
 
             /** @var Recipe recipe */
             $recipe = $this->getRandomReference('recipes');
             $comment->setRecipe($recipe);
+
+            /** @var User $author */
+            $author = $this->getRandomReference('users');
+            $comment->setAuthor($author);
 
             return $comment;
         });

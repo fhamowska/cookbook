@@ -37,20 +37,7 @@ class CommentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $user = $this->security->getUser();
 
-        $builder->add(
-            'email',
-            HiddenType::class,
-            [
-                'label' => 'label.email',
-                'required' => true,
-                'attr' => [
-                    'max_length' => 64,
-                    'value' => $user->getEmail(),
-                ],
-            ]
-        );
         $builder->add(
             'content',
             TextType::class,
