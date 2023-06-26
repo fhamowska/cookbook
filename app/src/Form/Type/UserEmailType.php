@@ -33,7 +33,7 @@ class UserEmailType extends AbstractType
             'email',
             TextType::class,
             [
-                'label' => 'label.useremail',
+                'label' => 'label.user_email',
                 'required' => true,
                 'attr' => ['max_length' => 255],
             ]

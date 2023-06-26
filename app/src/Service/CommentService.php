@@ -48,6 +48,14 @@ class CommentService implements CommentServiceInterface
      */
     public function getPaginatedList(int $page, User $author): PaginationInterface
     {
+        if ($author->hasRole('ROLE_ADMIN')) {
+            return $this->paginator->paginate(
+                $this->commentRepository->queryAll(),
+                $page,
+                CommentRepository::PAGINATOR_ITEMS_PER_PAGE
+            );
+        }
+
         return $this->paginator->paginate(
             $this->commentRepository->queryByAuthor($author),
             $page,

@@ -119,6 +119,25 @@ class CommentController extends AbstractController
     }
 
     /**
+     * Index action.
+     *
+     * @param Request $request HTTP Request
+     *
+     * @return Response HTTP response
+     */
+    #[Route(name: 'comment_index', methods: 'GET')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function index(Request $request): Response
+    {
+        $pagination = $this->commentService->getPaginatedList(
+            $request->query->getInt('page', 1),
+            $this->getUser()
+        );
+
+        return $this->render('comment/index.html.twig', ['pagination' => $pagination]);
+    }
+
+    /**
      * Delete action.
      *
      * @param Request $request HTTP request

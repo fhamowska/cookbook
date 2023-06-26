@@ -34,7 +34,7 @@
             </dd>
         </dl>
         <p>
-            <a class="btn btn-outline-primary" href="{{ url('recipe_index') }}" title="{{ 'action.back_to_list'|trans }}">
+            <a class="btn btn-outline-primary" class="btn btn-outline-primary" href="{{ url('recipe_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}
             </a>
         </p>
@@ -44,7 +44,7 @@
                 {{ 'action.comment'|trans }}
             </a>
         {% else %}
-            <a class="btn btn-outline-primary" href="{{ url('app_login') }}">{{ 'action_login_to_comment'|trans }}</a>
+            <a class="btn btn-outline-primary" href="{{ url('app_login') }}">{{ 'action.login_to_comment'|trans }}</a>
         {% endif %}
         {% if recipe.comments is defined and recipe.comments|length %}
             <table class="table">

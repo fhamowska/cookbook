@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.comment_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.comment_list'|trans }}</h1>
+
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'label.id'|trans }}</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>{{ 'label.email'|trans }}</th>
+                {% endif %}
+                <th>{{ 'label.content'|trans }}</th>
+                <th colspan="3">{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for comment in pagination.items %}
+                <tr>
+                    <td>{{ comment.id }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td>{{ comment.author.email }}</td>
+                    {% endif %}
+                    <td>{{ comment.content }}</td>
+                    <td>
+                        <a class="btn btn-outline-primary" href="{{ url('recipe_show', {id: comment.recipe.id}) }}" title="{{ 'action.show_recipe'|trans }}">
+                            {{ 'action.show_recipe'|trans }}
+                        </a>
+                        {% if is_granted('DELETE', comment) %}
+                            <a class="btn btn-outline-danger" href="{{ url('comment_delete', {id: comment.id}) }}" title="{{ 'action.delete'|trans }}">
+                                {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        {% include 'default/_single_alert_message.html.twig' with {
+            type: 'warning',
+            message: 'message.empty_list'|trans
+        } %}
+    {% endif %}
+{% endblock %}

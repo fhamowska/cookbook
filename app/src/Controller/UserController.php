@@ -79,7 +79,7 @@ class UserController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[Route('/{id}/edit_password', name: 'user_edit_password', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, User $user): Response
     {
         if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)) {
@@ -98,7 +98,7 @@ class UserController extends AbstractController
             $user,
             [
                 'method' => 'PUT',
-                'action' => $this->generateUrl('user_edit', ['id' => $user->getId()]),
+                'action' => $this->generateUrl('user_edit_password', ['id' => $user->getId()]),
             ]
         );
         $form->handleRequest($request);

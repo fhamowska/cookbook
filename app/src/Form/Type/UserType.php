@@ -36,7 +36,7 @@ class UserType extends AbstractType
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options' => ['label' => 'label.password'],
-                'second_options' => ['label' => 'label.rpPassword'],
+                'second_options' => ['label' => 'label.repeat_password'],
                 'attr' => ['autocomplete' => 'off'],
                 'mapped' => false,
             ]);
