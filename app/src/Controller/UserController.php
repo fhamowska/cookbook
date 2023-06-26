@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\CommentRepository;
 
 /**
  * Class UserController.
@@ -39,18 +41,22 @@ class UserController extends AbstractController
      */
     private TranslatorInterface $translator;
 
+    private CommentRepository $commentRepository;
+
     /**
      * Constructor.
      *
      * @param UserServiceInterface        $userService    User service
      * @param TranslatorInterface         $translator     Translator
      * @param UserPasswordHasherInterface $passwordHasher Password hasher
+     * @param CommentRepository    $commentRepository Comment Repository
      */
-    public function __construct(UserServiceInterface $userService, TranslatorInterface $translator, UserPasswordHasherInterface $passwordHasher)
+    public function __construct(UserServiceInterface $userService, TranslatorInterface $translator, UserPasswordHasherInterface $passwordHasher, CommentRepository $commentRepository)
     {
         $this->userService = $userService;
         $this->translator = $translator;
         $this->passwordHasher = $passwordHasher;
+        $this->commentRepository = $commentRepository;
     }
 
     /**
@@ -157,14 +163,20 @@ class UserController extends AbstractController
     public function delete(Request $request, User $user): Response
     {
         if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)) {
-            if ($user->getId() !== $this->getUser()->getId()) {
-                $this->addFlash(
-                    'warning',
-                    $this->translator->trans('message.record_not_found')
-                );
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.record_not_found')
+            );
 
-                return $this->redirectToRoute('recipe_index');
-            }
+            return $this->redirectToRoute('recipe_index');
+        }
+        if ($user->getId() == $this->getUser()->getId()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.record_not_found')
+            );
+
+            return $this->redirectToRoute('user_index');
         }
 
         $form = $this->createForm(
@@ -182,17 +194,21 @@ class UserController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $comments = $this->commentRepository->findBy(['author' => $user]);
+            foreach ($comments as $comment) {
+                $this->commentRepository->delete($comment);
+            }
             $this->userService->delete($user);
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.edited_successfully')
+                $this->translator->trans('message.deleted_successfully')
             );
 
             if (in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)) {
-                return $this->redirectToRoute('user_index');
+                return $this->redirectToRoute('recipe_index');
             }
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('recipe_index');
         }
 
         return $this->render(

@@ -42,6 +42,10 @@
                 <source>label.email</source>
                 <target>Email</target>
             </trans-unit>
+            <trans-unit id="label.ingredients">
+                <source>label.ingredients</source>
+                <target>Składniki</target>
+            </trans-unit>
             <trans-unit id="label.login">
                 <source>label.login</source>
                 <target>Logowanie</target>
@@ -94,10 +98,6 @@
             <trans-unit id="message.record_not_found">
                 <source>message.record_not_found</source>
                 <target>Nie znaleziono.</target>
-            </trans-unit>
-            <trans-unit id="message.ingredient_contains_recipes">
-                <source>message.ingredient_contains_recipes</source>
-                <target>Składnik zawiera przepisy.</target>
             </trans-unit>
             <trans-unit id="message.tag_contains_recipes ">
                 <source>message.tag_contains_recipes</source>
@@ -255,7 +255,7 @@
             </trans-unit>
             <trans-unit id="action.login_to_comment">
                 <source>action.login_to_comment</source>
-                <target>Zaloguj się by skomentować</target>
+                <target>Zaloguj się aby skomentować</target>
             </trans-unit>
             <trans-unit id="action.logout">
                 <source>action.logout</source>

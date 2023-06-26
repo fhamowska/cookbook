@@ -24,7 +24,7 @@ class IngredientFixtures extends AbstractBaseFixtures
     {
         $this->createMany(10, 'ingredients', function (int $i) {
             $ingredient = new Ingredient();
-            $ingredient->setTitle($this->faker->unique()->text(3));
+            $ingredient->setTitle($this->faker->unique()->word(3));
             $ingredient->setCreatedAt(
                 \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')

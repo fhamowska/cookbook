@@ -25,7 +25,6 @@
         {{ app.user.email }}
         <a class="btn btn-outline-primary" href="{{ url('user_edit_password', {id: app.user.id}) }}">{{ 'action.edit_password'|trans }}</a>
         <a class="btn btn-outline-primary" href="{{ url('user_edit_email', {id: app.user.id}) }}">{{ 'action.edit_email'|trans }}</a>
-        <a class="btn btn-outline-primary" href="{{ url('user_delete', {id: app.user.id}) }}">{{ 'action.delete_user'|trans }}</a>
         <a class="btn btn-outline-primary" href="{{ url('app_logout') }}">{{ 'action.logout'|trans }}</a>
     {% else %}
         <a class="btn btn-outline-primary" href="{{ url('app_login') }}">{{ 'action.login'|trans }}</a>
