@@ -146,4 +146,23 @@ class RecipeRepository extends ServiceEntityRepository
 
         return $queryBuilder;
     }
+
+    /**
+     * @param Recipe $recipe
+     *
+     * @return float
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function calculateAvg(Recipe $recipe): float
+    {
+        $result = $this->createQueryBuilder('rating')
+            ->select('AVG(rating.value) AS ranking')
+            ->where('rating.recipe = :recipe')
+            ->setParameter('recipe', $recipe)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $result['ranking'] ?? 0;
+    }
 }

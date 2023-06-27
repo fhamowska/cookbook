@@ -255,7 +255,7 @@
             </trans-unit>
             <trans-unit id="action.login_to_comment">
                 <source>action.login_to_comment</source>
-                <target>Log in to Comment</target>
+                <target>Log in to comment</target>
             </trans-unit>
             <trans-unit id="action.logout">
                 <source>action.logout</source>
