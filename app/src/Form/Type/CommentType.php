@@ -7,7 +7,6 @@ namespace App\Form\Type;
 
 use App\Entity\Comment;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,10 +19,16 @@ class CommentType extends AbstractType
 {
     private $security;
 
+    /**
+     * Constructor.
+     *
+     * @param Security $security Security
+     */
     public function __construct(Security $security)
     {
         $this->security = $security;
     }
+
     /**
      * Builds the form.
      *
@@ -37,7 +42,6 @@ class CommentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $builder->add(
             'content',
             TextType::class,

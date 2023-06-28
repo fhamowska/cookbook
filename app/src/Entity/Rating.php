@@ -7,14 +7,12 @@ namespace App\Entity;
 
 use App\Repository\RatingRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Rating.
  */
 #[ORM\Entity(repositoryClass: RatingRepository::class)]
-#[UniqueEntity(fields: ['author', 'recipe'], message: 'You have already rated this recipe.')]
 #[ORM\Table(name: 'ratings')]
 class Rating
 {
@@ -29,9 +27,10 @@ class Rating
     /**
      * Value.
      */
-    #[ORM\Column(type: 'integer', length: 255)]
+    #[ORM\Column(type: 'integer')]
     #[Assert\Type('integer')]
     #[Assert\NotBlank]
+    #[Assert\Range(min: 1, max: 5)]
     private ?int $value;
 
     /**
@@ -43,9 +42,6 @@ class Rating
 
     /**
      * Author.
-     *
-     * @var User|null
-     *
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
@@ -111,11 +107,23 @@ class Rating
         return $this;
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null Author
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author Author
+     *
+     * @return $this
+     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;

@@ -25,7 +25,7 @@ class RegistrationController extends AbstractController
      *
      * @param Request                     $request            HTTP Request
      * @param UserPasswordHasherInterface $userPasswordHasher Hashes Password
-     * @param EntityManagerInterface      $entityManager      Manager
+     * @param EntityManagerInterface      $entityManager      Entity Manager
      *
      * @return Response HTTP response
      */

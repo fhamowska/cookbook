@@ -17,7 +17,8 @@ interface RatingServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int  $page   Page number
+     * @param User $author User
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */

@@ -42,12 +42,9 @@ class Comment
 
     /**
      * Author.
-     *
-     * @var User|null
-     *
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
+    #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;
@@ -73,7 +70,7 @@ class Comment
     }
 
     /**
-     * Setter for Content.
+     * Setter for content.
      *
      * @param string|null $content Content
      *
@@ -110,11 +107,23 @@ class Comment
         return $this;
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null Author
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author Author
+     *
+     * @return $this
+     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;

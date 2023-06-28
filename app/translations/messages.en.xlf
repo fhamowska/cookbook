@@ -66,6 +66,22 @@
                 <source>label.user_email</source>
                 <target>Email</target>
             </trans-unit>
+            <trans-unit id="label.value">
+                <source>label.value</source>
+                <target>Value</target>
+            </trans-unit>
+            <trans-unit id="label.none">
+                <source>label.none</source>
+                <target>none</target>
+            </trans-unit>
+            <trans-unit id="label.average_rating">
+                <source>label.average_rating</source>
+                <target>Average rating</target>
+            </trans-unit>
+            <trans-unit id="label.no_ratings">
+                <source>label.no_ratings</source>
+                <target>No ratings</target>
+            </trans-unit>
 
             <trans-unit id="message.empty_list">
                 <source>message.empty_list</source>
@@ -98,10 +114,6 @@
             <trans-unit id="message.record_not_found">
                 <source>message.record_not_found</source>
                 <target>Record not found.</target>
-            </trans-unit>
-            <trans-unit id="message.tag_contains_recipes ">
-                <source>message.tag_contains_recipes</source>
-                <target>Tag contains recipes.</target>
             </trans-unit>
 
             <trans-unit id="title.recipe_list">
@@ -196,6 +208,14 @@
                 <source>title.register</source>
                 <target>Register</target>
             </trans-unit>
+            <trans-unit id="title.tag_create">
+                <source>title.tag_create</source>
+                <target>Create tag</target>
+            </trans-unit>
+            <trans-unit id="title.rating_create">
+                <source>title.rating_create</source>
+                <target>Create rating</target>
+            </trans-unit>
 
             <trans-unit id="action.show">
                 <source>action.show</source>
@@ -264,6 +284,10 @@
             <trans-unit id="action.show_recipe">
                 <source>action.show_recipe</source>
                 <target>Show Recipe</target>
+            </trans-unit>
+            <trans-unit id="action.rate">
+                <source>action.rate</source>
+                <target>Rate this recipe</target>
             </trans-unit>
         </body>
     </file>

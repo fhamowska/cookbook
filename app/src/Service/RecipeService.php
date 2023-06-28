@@ -1,13 +1,14 @@
 <?php
+
 /**
  * Recipe service.
  */
 
 namespace App\Service;
+
 use App\Entity\Recipe;
 use App\Repository\RecipeRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
-use Knp\Component\Pager\Pagination\SlidingPagination;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
@@ -38,18 +39,13 @@ class RecipeService implements RecipeServiceInterface
     /**
      * Constructor.
      *
-     * @param CategoryServiceInterface $categoryService Category service
-     * @param PaginatorInterface       $paginator       Paginator
-     * @param TagServiceInterface      $tagService      Tag service
-     * @param RecipeRepository           $recipeRepository  Recipe repository
+     * @param CategoryServiceInterface $categoryService  Category service
+     * @param PaginatorInterface       $paginator        Paginator
+     * @param TagServiceInterface      $tagService       Tag service
+     * @param RecipeRepository         $recipeRepository Recipe repository
      */
-
-    public function __construct(
-        CategoryServiceInterface $categoryService,
-        PaginatorInterface $paginator,
-        TagServiceInterface $tagService,
-        RecipeRepository $recipeRepository
-    ) {
+    public function __construct(CategoryServiceInterface $categoryService, PaginatorInterface $paginator, TagServiceInterface $tagService, RecipeRepository $recipeRepository)
+    {
         $this->categoryService = $categoryService;
         $this->paginator = $paginator;
         $this->tagService = $tagService;
@@ -59,10 +55,10 @@ class RecipeService implements RecipeServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int                $page    Page number
      * @param array<string, int> $filters Filters array
      *
-     * @return PaginationInterface<SlidingPagination> Paginated list
+     * @return PaginationInterface Paginated list
      */
     public function getPaginatedList(int $page, array $filters = []): PaginationInterface
     {
@@ -95,6 +91,13 @@ class RecipeService implements RecipeServiceInterface
         $this->recipeRepository->delete($recipe);
     }
 
+    /**
+     * Get recipe by ID.
+     *
+     * @param int $id Recipe ID
+     *
+     * @return Recipe|null Recipe entity
+     */
     public function getById(int $id): ?Recipe
     {
         return $this->recipeRepository->find($id);
@@ -110,6 +113,7 @@ class RecipeService implements RecipeServiceInterface
     private function prepareFilters(array $filters): array
     {
         $resultFilters = [];
+
         if (!empty($filters['category_id'])) {
             $category = $this->categoryService->findOneById($filters['category_id']);
             if (null !== $category) {

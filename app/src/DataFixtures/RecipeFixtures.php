@@ -6,7 +6,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\Ingredient;
 use App\Entity\Recipe;
 use App\Entity\Tag;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;

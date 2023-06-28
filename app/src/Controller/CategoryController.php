@@ -36,12 +36,12 @@ class CategoryController extends AbstractController
     /**
      * Constructor.
      *
-     * @param CategoryServiceInterface $recipeService Recipe service
-     * @param TranslatorInterface      $translator    Translator
+     * @param CategoryServiceInterface $categoryService Category service
+     * @param TranslatorInterface      $translator      Translator
      */
-    public function __construct(CategoryServiceInterface $recipeService, TranslatorInterface $translator)
+    public function __construct(CategoryServiceInterface $categoryService, TranslatorInterface $translator)
     {
-        $this->categoryService = $recipeService;
+        $this->categoryService = $categoryService;
         $this->translator = $translator;
     }
 
@@ -55,9 +55,7 @@ class CategoryController extends AbstractController
     #[Route(name: 'category_index', methods: 'GET')]
     public function index(Request $request): Response
     {
-        $pagination = $this->categoryService->getPaginatedList(
-            $request->query->getInt('page', 1)
-        );
+        $pagination = $this->categoryService->getPaginatedList($request->query->getInt('page', 1));
 
         return $this->render('category/index.html.twig', ['pagination' => $pagination]);
     }
@@ -65,7 +63,7 @@ class CategoryController extends AbstractController
     /**
      * Show action.
      *
-     * @param Category $category Category
+     * @param Category $category Category entity
      *
      * @return Response HTTP response
      */

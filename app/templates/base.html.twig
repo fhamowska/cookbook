@@ -12,29 +12,51 @@
     {% endblock %}
 </head>
 <body>
-<main role="main" class="container-fluid">
-    <a class="btn btn-outline-primary" href="{{ url('recipe_index') }}">{{ 'title.recipe_list'|trans }}</a>
-    {% if is_granted('ROLE_ADMIN') %}
-
-        <a class="btn btn-outline-primary" href="{{ url('category_index') }}" class="button">{{ 'title.category_list'|trans }}</a>
-        <a class="btn btn-outline-primary" href="{{ url('tag_index') }}" class="button">{{ 'title.tag_list'|trans }}</a>
-        <a class="btn btn-outline-primary" href="{{ url('user_index') }}" class="button">{{ 'title.user_list'|trans }}</a>
-    {% endif %}
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <a class="btn btn-outline-primary" href="{{ url('comment_index') }}" class="button">{{ 'title.comment_list'|trans }}</a>
-        {{ app.user.email }}
-        <a class="btn btn-outline-primary" href="{{ url('user_edit_password', {id: app.user.id}) }}">{{ 'action.edit_password'|trans }}</a>
-        <a class="btn btn-outline-primary" href="{{ url('user_edit_email', {id: app.user.id}) }}">{{ 'action.edit_email'|trans }}</a>
-        <a class="btn btn-outline-primary" href="{{ url('app_logout') }}">{{ 'action.logout'|trans }}</a>
-    {% else %}
-        <a class="btn btn-outline-primary" href="{{ url('app_login') }}">{{ 'action.login'|trans }}</a>
-    {% endif %}
+<main role="main">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary bg-secondary" aria-label="Third navbar example">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url('recipe_index') }}">{{ 'title.recipe_list'|trans }}</a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url('user_index') }}" class="button">{{ 'title.user_list'|trans }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url('category_index') }}" class="button">{{ 'title.category_list'|trans }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url('tag_index') }}" class="button">{{ 'title.tag_list'|trans }}</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url('comment_index') }}" class="button">{{ 'title.comment_list'|trans }}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{{ app.user.email }}</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url('user_edit_email', {id: app.user.id}) }}">{{ 'action.edit_email'|trans }}</a></li>
+                                <li><a class="dropdown-item" href="{{ url('user_edit_password', {id: app.user.id}) }}">{{ 'action.edit_password'|trans }}</a></li>
+                                <li><a class="dropdown-item" href="{{ url('app_logout') }}">{{ 'action.logout'|trans }}</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('app_login') }}">{{ 'action.login'|trans }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container-fluid">
         {% include 'default/_flash_messages.html.twig' %}
         {% block body %}{% endblock %}
     </div>
-</main>
-{% block javascripts %}
+</main>{% block javascripts %}
     <script
             src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
             integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="

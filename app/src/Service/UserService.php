@@ -7,6 +7,8 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -28,9 +30,8 @@ class UserService implements UserServiceInterface
     /**
      * Constructor.
      *
-     * @param UserRepository     $userRepository  User repository
-     * @param PaginatorInterface $paginator       Paginator
-     *
+     * @param UserRepository     $userRepository User repository
+     * @param PaginatorInterface $paginator      Paginator
      */
     public function __construct(UserRepository $userRepository, PaginatorInterface $paginator)
     {
@@ -78,6 +79,14 @@ class UserService implements UserServiceInterface
         return $this->userRepository->findOneById($id);
     }
 
+    /**
+     * Delete user.
+     *
+     * @param User $user User entity
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
     public function delete(User $user): void
     {
         $this->userRepository->delete($user);

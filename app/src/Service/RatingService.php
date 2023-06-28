@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Rating service.
  */
@@ -29,8 +30,8 @@ class RatingService implements RatingServiceInterface
     /**
      * Constructor.
      *
-     * @param RatingRepository  $ratingRepository Rating repository
-     * @param PaginatorInterface $paginator         Paginator
+     * @param RatingRepository   $ratingRepository Rating repository
+     * @param PaginatorInterface $paginator        Paginator
      */
     public function __construct(RatingRepository $ratingRepository, PaginatorInterface $paginator)
     {
@@ -44,7 +45,7 @@ class RatingService implements RatingServiceInterface
      * @param int  $page   Page number
      * @param User $author Author
      *
-     * @return PaginationInterface<string, mixed> Paginated list
+     * @return PaginationInterface Paginated list
      */
     public function getPaginatedList(int $page, User $author): PaginationInterface
     {

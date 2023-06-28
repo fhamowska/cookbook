@@ -42,5 +42,4 @@ interface RecipeServiceInterface
      * @param int $id Recipe id
      */
     public function getById(int $id): ?Recipe;
-
 }

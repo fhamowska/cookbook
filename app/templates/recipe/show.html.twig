@@ -36,7 +36,7 @@
                 {% endfor %}
             </dd>
             <dt>{{ 'label.content'|trans }}</dt>
-            <dd>{{  recipe.content|nl2br }}</dd>
+            <dd>{{  recipe.content|nl2br|markdown_to_html }}</dd>
             <dt>{{ 'label.tags'|trans }}</dt>
             <dd>
                 {% for item in recipe.tags %}

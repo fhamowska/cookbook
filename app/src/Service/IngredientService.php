@@ -1,6 +1,8 @@
 <?php
 
-// IngredientService.php
+/**
+ * Ingredient service.
+ */
 
 namespace App\Service;
 
@@ -12,12 +14,22 @@ use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 
+/**
+ * Class IngredientService.
+ */
 class IngredientService implements IngredientServiceInterface
 {
     private IngredientRepository $ingredientRepository;
     private RecipeRepository $recipeRepository;
     private PaginatorInterface $paginator;
 
+    /**
+     * Constructor.
+     *
+     * @param IngredientRepository $ingredientRepository Ingredient repository
+     * @param PaginatorInterface   $paginator            Paginator
+     * @param RecipeRepository     $recipeRepository     Recipe repository
+     */
     public function __construct(IngredientRepository $ingredientRepository, PaginatorInterface $paginator, RecipeRepository $recipeRepository)
     {
         $this->ingredientRepository = $ingredientRepository;
@@ -25,6 +37,13 @@ class IngredientService implements IngredientServiceInterface
         $this->recipeRepository = $recipeRepository;
     }
 
+    /**
+     * Get paginated list.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface Paginated list
+     */
     public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(

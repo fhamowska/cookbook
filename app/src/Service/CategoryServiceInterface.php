@@ -6,7 +6,6 @@
 namespace App\Service;
 
 use App\Entity\Category;
-use App\Entity\Tag;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
@@ -46,7 +45,6 @@ interface CategoryServiceInterface
      */
     public function canBeDeleted(Category $category): bool;
 
-
     /**
      * Find by id.
      *
@@ -57,5 +55,4 @@ interface CategoryServiceInterface
      * @throws NonUniqueResultException
      */
     public function findOneById(int $id): ?Category;
-
 }

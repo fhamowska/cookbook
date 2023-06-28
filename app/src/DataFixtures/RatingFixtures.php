@@ -5,8 +5,6 @@
 
 namespace App\DataFixtures;
 
-use App\DataFixtures\AbstractBaseFixtures;
-use App\DataFixtures\RecipeFixtures;
 use App\Entity\Recipe;
 use App\Entity\Rating;
 use App\Entity\User;

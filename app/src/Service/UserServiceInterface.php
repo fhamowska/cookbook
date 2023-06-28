@@ -40,5 +40,10 @@ interface UserServiceInterface
      */
     public function findOneById(int $id): ?User;
 
+    /**
+     * Delete entity.
+     *
+     * @param User $user User entity
+     */
     public function delete(User $user): void;
 }

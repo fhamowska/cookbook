@@ -8,17 +8,17 @@ namespace App\Entity;
 use App\Entity\Enum\UserRole;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * Class User.
  */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'users')]
-#[ORM\UniqueConstraint(name: 'email_idx', columns: ['email'])]
+#[UniqueEntity(fields: ['email'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
@@ -164,6 +164,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @return string|null
      *
      * @see UserInterface
      */

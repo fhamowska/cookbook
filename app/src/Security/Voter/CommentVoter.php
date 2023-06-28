@@ -17,7 +17,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class CommentVoter extends Voter
 {
-
     /**
      * View permission.
      *
@@ -34,8 +33,6 @@ class CommentVoter extends Voter
 
     /**
      * Security helper.
-     *
-     * @var Security
      */
     private Security $security;
 
@@ -90,22 +87,21 @@ class CommentVoter extends Voter
         return false;
     }
 
-
     /**
      * Checks if user can view comment.
      *
      * @param Comment $comment Comment entity
-     * @param User $user User
+     * @param User    $user    User
      *
      * @return bool Result
      */
     private function canView(Comment $comment, User $user): bool
     {
         $userRoles = $user->getRoles();
-        if (in_array('ROLE_ADMIN', $userRoles, true))
-        {
+        if (in_array('ROLE_ADMIN', $userRoles, true)) {
             return 1;
         }
+
         return $comment->getAuthor() === $user;
     }
 
@@ -113,17 +109,17 @@ class CommentVoter extends Voter
      * Checks if user can delete comment.
      *
      * @param Comment $comment Comment entity
-     * @param User $user User
+     * @param User    $user    User
      *
      * @return bool Result
      */
     private function canDelete(Comment $comment, User $user): bool
     {
         $userRoles = $user->getRoles();
-        if (in_array('ROLE_ADMIN', $userRoles, true))
-        {
+        if (in_array('ROLE_ADMIN', $userRoles, true)) {
             return 1;
         }
+
         return $comment->getAuthor() === $user;
     }
 }

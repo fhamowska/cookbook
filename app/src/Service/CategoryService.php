@@ -1,6 +1,8 @@
 <?php
 
-// CategoryService.php
+/**
+ * Category service.
+ */
 
 namespace App\Service;
 
@@ -12,12 +14,22 @@ use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 
+/**
+ * Class CategoryService.
+ */
 class CategoryService implements CategoryServiceInterface
 {
     private CategoryRepository $categoryRepository;
     private RecipeRepository $recipeRepository;
     private PaginatorInterface $paginator;
 
+    /**
+     * CategoryService constructor.
+     *
+     * @param CategoryRepository $categoryRepository Category repository
+     * @param PaginatorInterface $paginator          Paginator
+     * @param RecipeRepository   $recipeRepository   Recipe repository
+     */
     public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, RecipeRepository $recipeRepository)
     {
         $this->categoryRepository = $categoryRepository;
@@ -25,6 +37,13 @@ class CategoryService implements CategoryServiceInterface
         $this->recipeRepository = $recipeRepository;
     }
 
+    /**
+     * Get paginated list.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface Paginated list
+     */
     public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(

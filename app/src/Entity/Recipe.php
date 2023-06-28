@@ -119,14 +119,6 @@ class Recipe
      */
     private $averageRating;
 
-    public function __construct()
-    {
-        $this->tags = new ArrayCollection();
-        $this->ingredients = new ArrayCollection();
-        $this->comments = new ArrayCollection();
-        $this->ratings = new ArrayCollection();
-    }
-
     /**
      * Ingredients.
      *
@@ -146,6 +138,17 @@ class Recipe
     #[ORM\ManyToMany(targetEntity: Ingredient::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
     #[ORM\JoinTable(name: 'recipes_ingredients')]
     private $ingredients;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+        $this->ingredients = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
+    }
 
     /**
      * Getter for Id.
@@ -217,17 +220,30 @@ class Recipe
         $this->title = $title;
     }
 
+    /**
+     * Getter for category.
+     *
+     * @return Category|null Category
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Setter for category.
+     *
+     * @param Category|null $category Category
+     *
+     * @return self Self
+     */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
 
         return $this;
     }
+
 
     /**
      * Getter for content.
@@ -249,17 +265,30 @@ class Recipe
         $this->content = $content;
     }
 
+    /**
+     * Getter for slug.
+     *
+     * @return string|null Slug
+     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
+    /**
+     * Setter for slug.
+     *
+     * @param string $slug Slug
+     *
+     * @return self Self
+     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
 
         return $this;
     }
+
 
     /**
      * Getter for tags.
@@ -433,7 +462,7 @@ class Recipe
 
         foreach ($ratings as $rating) {
             $total += $rating->getValue();
-            $count++;
+            ++$count;
         }
 
         return $total / $count;

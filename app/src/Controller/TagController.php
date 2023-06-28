@@ -36,12 +36,12 @@ class TagController extends AbstractController
     /**
      * Constructor.
      *
-     * @param TagServiceInterface $recipeService Recipe service
-     * @param TranslatorInterface $translator    Translator
+     * @param TagServiceInterface $tagService Tag service
+     * @param TranslatorInterface $translator Translator
      */
-    public function __construct(TagServiceInterface $recipeService, TranslatorInterface $translator)
+    public function __construct(TagServiceInterface $tagService, TranslatorInterface $translator)
     {
-        $this->tagService = $recipeService;
+        $this->tagService = $tagService;
         $this->translator = $translator;
     }
 
@@ -65,7 +65,7 @@ class TagController extends AbstractController
     /**
      * Show action.
      *
-     * @param Tag $tag Tag
+     * @param Tag $tag Tag entity
      *
      * @return Response HTTP response
      */
