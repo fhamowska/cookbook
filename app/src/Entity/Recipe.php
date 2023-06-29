@@ -59,9 +59,9 @@ class Recipe
      * Category.
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
-    #[Assert\Type(Category::class)]
     #[ORM\JoinColumn(nullable: false)]
     #[ORM\JoinTable(name: 'recipes_categories')]
+    #[Assert\Type(Category::class)]
     private ?Category $category = null;
 
     /**
@@ -98,7 +98,7 @@ class Recipe
      * Average Rating.
      */
     #[Assert\Valid]
-    #[ORM\Column(type: 'float')]
+    #[ORM\Column(type: 'float', nullable: true)]
     #[Assert\Type('float')]
     private ?float $averageRating;
 
