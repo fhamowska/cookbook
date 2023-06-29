@@ -7,8 +7,10 @@
 namespace App\Service;
 
 use App\Entity\Rating;
+use App\Entity\Recipe;
 use App\Entity\User;
 use App\Repository\RatingRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -82,5 +84,19 @@ class RatingService implements RatingServiceInterface
     public function delete(Rating $rating): void
     {
         $this->ratingRepository->delete($rating);
+    }
+
+    /**
+     * Calculate the average rating for a recipe.
+     *
+     * @param Recipe $recipe The recipe for which to calculate the average rating
+     *
+     * @return float The average rating for the recipe
+     *
+     * @throws NonUniqueResultException
+     */
+    public function calculateAvg(Recipe $recipe): float
+    {
+        return $this->ratingRepository->calculateAvg($recipe);
     }
 }

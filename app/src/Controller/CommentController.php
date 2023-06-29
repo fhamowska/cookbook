@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\User;
 use App\Form\Type\CommentType;
 use App\Service\CommentServiceInterface;
 use App\Service\RecipeServiceInterface;
@@ -73,7 +74,7 @@ class CommentController extends AbstractController
         }
 
         $comment = new Comment();
-        /** @var \App\Entity\User $user */
+        /** @var User $user */
         $user = $this->getUser();
         $comment->setAuthor($user);
 

@@ -8,6 +8,7 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Recipe;
 use App\Entity\Tag;
+use App\Entity\Ingredient;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -28,7 +29,7 @@ class RecipeFixtures extends AbstractBaseFixtures implements DependentFixtureInt
             return;
         }
 
-        $this->createMany(20, 'recipes', function (int $i) {
+        $this->createMany(20, 'recipes', function () {
             $recipe = new Recipe();
             $recipe->setTitle($this->faker->sentence);
             $recipe->setCreatedAt(
@@ -45,6 +46,7 @@ class RecipeFixtures extends AbstractBaseFixtures implements DependentFixtureInt
             $category = $this->getRandomReference('categories');
             $recipe->setCategory($category);
             $recipe->setContent($this->faker->paragraph(15));
+            $recipe->setAverageRating(0);
 
             /** @var array<array-key, Tag> $tags */
             $tags = $this->getRandomReferences(
@@ -55,12 +57,13 @@ class RecipeFixtures extends AbstractBaseFixtures implements DependentFixtureInt
                 $recipe->addTag($tag);
             }
 
+            /** @var array<array-key, Ingredient> $ingredients */
             $ingredients = $this->getRandomReferences(
                 'ingredients',
                 $this->faker->numberBetween(3, 10)
             );
-            foreach ($ingredients as $item) {
-                $recipe->addIngredient($item);
+            foreach ($ingredients as $ingredient) {
+                $recipe->addIngredient($ingredient);
             }
 
             return $recipe;

@@ -22,9 +22,9 @@ class IngredientFixtures extends AbstractBaseFixtures
      */
     public function loadData(): void
     {
-        $this->createMany(10, 'ingredients', function (int $i) {
+        $this->createMany(10, 'ingredients', function () {
             $ingredient = new Ingredient();
-            $ingredient->setTitle($this->faker->unique()->word(3));
+            $ingredient->setTitle($this->faker->unique()->word);
             $ingredient->setCreatedAt(
                 \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')

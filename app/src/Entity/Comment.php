@@ -38,6 +38,7 @@ class Comment
      */
     #[ORM\ManyToOne(targetEntity: Recipe::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\Type(Recipe::class)]
     private ?Recipe $recipe = null;
 
     /**
@@ -73,14 +74,10 @@ class Comment
      * Setter for content.
      *
      * @param string|null $content Content
-     *
-     * @return $this
      */
-    public function setContent(?string $content): self
+    public function setContent(?string $content): void
     {
         $this->content = $content;
-
-        return $this;
     }
 
     /**
@@ -97,14 +94,10 @@ class Comment
      * Setter for recipe.
      *
      * @param Recipe|null $recipe Recipe
-     *
-     * @return $this
      */
-    public function setRecipe(?Recipe $recipe): self
+    public function setRecipe(?Recipe $recipe): void
     {
         $this->recipe = $recipe;
-
-        return $this;
     }
 
     /**
@@ -121,13 +114,9 @@ class Comment
      * Setter for author.
      *
      * @param User|null $author Author
-     *
-     * @return $this
      */
-    public function setAuthor(?User $author): self
+    public function setAuthor(?User $author): void
     {
         $this->author = $author;
-
-        return $this;
     }
 }

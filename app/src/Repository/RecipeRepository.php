@@ -52,13 +52,13 @@ class RecipeRepository extends ServiceEntityRepository
      *
      * @param array $filters Filters array
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(array $filters = []): QueryBuilder
     {
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
-                'partial recipe.{id, createdAt, updatedAt, title}',
+                'partial recipe.{id, createdAt, updatedAt, title, averageRating}',
                 'partial category.{id, title}',
                 'partial tags.{id, title}'
             )
@@ -110,27 +110,6 @@ class RecipeRepository extends ServiceEntityRepository
     {
         $this->_em->remove($recipe);
         $this->_em->flush();
-    }
-
-    /**
-     * Calculate the average rating for a recipe.
-     *
-     * @param Recipe $recipe Recipe entity
-     *
-     * @return float average rating
-     *
-     * @throws NonUniqueResultException
-     */
-    public function calculateAvg(Recipe $recipe): float
-    {
-        $result = $this->createQueryBuilder('rating')
-            ->select('AVG(rating.value) AS ranking')
-            ->where('rating.recipe = :recipe')
-            ->setParameter('recipe', $recipe)
-            ->getQuery()
-            ->getOneOrNullResult();
-
-        return $result['ranking'] ?? 0;
     }
 
     /**

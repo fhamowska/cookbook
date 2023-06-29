@@ -6,8 +6,10 @@
 namespace App\Repository;
 
 use App\Entity\Rating;
+use App\Entity\Recipe;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -85,6 +87,27 @@ class RatingRepository extends ServiceEntityRepository
             ->setParameter('author', $user);
 
         return $queryBuilder;
+    }
+
+    /**
+     * Calculate the average rating for a recipe.
+     *
+     * @param Recipe $recipe Recipe entity
+     *
+     * @return float average rating
+     *
+     * @throws NonUniqueResultException
+     */
+    public function calculateAvg(Recipe $recipe): float
+    {
+        $result = $this->createQueryBuilder('rating')
+            ->select('AVG(rating.value) AS ranking')
+            ->where('rating.recipe = :recipe')
+            ->setParameter('recipe', $recipe)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $result['ranking'] ?? 0;
     }
 
     /**

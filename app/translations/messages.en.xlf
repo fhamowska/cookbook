@@ -289,6 +289,10 @@
                 <source>action.rate</source>
                 <target>Rate this recipe</target>
             </trans-unit>
+            <trans-unit id="label.rating">
+                <source>label.rating</source>
+                <target>Rating</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

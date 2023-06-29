@@ -6,6 +6,7 @@
 namespace App\Entity;
 
 use App\Repository\TagRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -51,15 +52,6 @@ class Tag
     #[Assert\NotBlank]
     #[Assert\Length(min: 3, max: 64)]
     private ?string $title;
-
-    /**
-     * Slug.
-     */
-    #[ORM\Column(type: 'string', length: 64)]
-    #[Assert\Type('string')]
-    #[Assert\Length(min: 3, max: 64)]
-    #[Gedmo\Slug(fields: ['title'])]
-    private ?string $slug;
 
     /**
      * Getter for Id.
@@ -129,25 +121,5 @@ class Tag
     public function setTitle(?string $title): void
     {
         $this->title = $title;
-    }
-
-    /**
-     * Getter for slug.
-     *
-     * @return string|null Slug
-     */
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Setter for slug.
-     *
-     * @param string $slug Slug
-     */
-    public function setSlug(string $slug): void
-    {
-        $this->slug = $slug;
     }
 }

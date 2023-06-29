@@ -9,8 +9,6 @@ use App\Form\Type\UserEmailType;
 use App\Form\Type\UserType;
 use App\Entity\User;
 use App\Service\UserServiceInterface;
-use Doctrine\ORM\Exception\ORMException;
-use Doctrine\ORM\OptimisticLockException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -96,7 +94,7 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user): Response
     {
         if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)) {
-            if ($user->getId() !== $this->getUser()->getId()) {
+            if ($user !== $this->getUser()) {
                 $this->addFlash(
                     'warning',
                     $this->translator->trans('message.record_not_found')
@@ -154,9 +152,6 @@ class UserController extends AbstractController
      * @param User    $user    User entity
      *
      * @return Response HTTP response
-     *
-     * @throws ORMException
-     * @throws OptimisticLockException
      */
     #[Route(
         '/{id}/delete',
@@ -174,7 +169,7 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('recipe_index');
         }
-        if ($user->getId() === $this->getUser()->getId()) {
+        if ($user === $this->getUser()) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.record_not_found')
@@ -241,7 +236,7 @@ class UserController extends AbstractController
     public function editEmail(Request $request, User $user): Response
     {
         if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)) {
-            if ($user->getId() !== $this->getUser()->getId()) {
+            if ($user !== $this->getUser()) {
                 $this->addFlash(
                     'warning',
                     $this->translator->trans('message.record_not_found')

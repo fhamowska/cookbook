@@ -5,9 +5,9 @@
 
 namespace App\Service;
 
-use App\Repository\RecipeRepository;
 use App\Entity\Tag;
 use App\Repository\TagRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -22,11 +22,6 @@ class TagService implements TagServiceInterface
     private TagRepository $tagRepository;
 
     /**
-     * Recipe repository.
-     */
-    private RecipeRepository $recipeRepository;
-
-    /**
      * Paginator.
      */
     private PaginatorInterface $paginator;
@@ -34,15 +29,13 @@ class TagService implements TagServiceInterface
     /**
      * Constructor.
      *
-     * @param TagRepository      $tagRepository    Tag repository
-     * @param PaginatorInterface $paginator        Paginator
-     * @param RecipeRepository   $recipeRepository Recipe repository
+     * @param TagRepository      $tagRepository Tag repository
+     * @param PaginatorInterface $paginator     Paginator
      */
-    public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator, RecipeRepository $recipeRepository)
+    public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator)
     {
         $this->tagRepository = $tagRepository;
         $this->paginator = $paginator;
-        $this->recipeRepository = $recipeRepository;
     }
 
     /**

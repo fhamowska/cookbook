@@ -7,7 +7,9 @@ namespace App\Controller;
 
 use App\Entity\Recipe;
 use App\Form\Type\RecipeType;
+use App\Service\RatingServiceInterface;
 use App\Service\RecipeServiceInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -66,13 +68,20 @@ class RecipeController extends AbstractController
     /**
      * Show action.
      *
-     * @param Recipe $recipe Recipe entity
+     * @param Recipe                 $recipe        Recipe entity
+     * @param RatingServiceInterface $ratingService Rating service
      *
      * @return Response HTTP response
+     *
+     * @throws NonUniqueResultException
      */
     #[Route('/{id}', name: 'recipe_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
-    public function show(Recipe $recipe): Response
+    public function show(Recipe $recipe, RatingServiceInterface $ratingService): Response
     {
+        $averageRating = $ratingService->calculateAvg($recipe);
+        $recipe->setAverageRating($averageRating);
+        $this->recipeService->save($recipe);
+
         return $this->render('recipe/show.html.twig', ['recipe' => $recipe]);
     }
 

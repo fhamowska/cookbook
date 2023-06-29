@@ -30,11 +30,11 @@ class RatingFixtures extends AbstractBaseFixtures implements DependentFixtureInt
             return;
         }
 
-        $this->createMany(100, 'ratings', function (int $i) {
+        $this->createMany(100, 'ratings', function () {
             $rating = new Rating();
             $rating->setValue($this->faker->numberBetween(1, 5));
 
-            /** @var Recipe recipe */
+            /** @var Recipe $recipe */
             $recipe = $this->getRandomReference('recipes');
             $rating->setRecipe($recipe);
 

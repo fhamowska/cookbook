@@ -9,7 +9,6 @@ use App\Entity\Comment;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -30,21 +29,6 @@ class CommentVoter extends Voter
      * @const string
      */
     public const DELETE = 'DELETE';
-
-    /**
-     * Security helper.
-     */
-    private Security $security;
-
-    /**
-     * OrderVoter constructor.
-     *
-     * @param Security $security Security helper
-     */
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }
 
     /**
      * Determines if the attribute and subject are supported by this voter.
@@ -77,14 +61,11 @@ class CommentVoter extends Voter
             return false;
         }
 
-        switch ($attribute) {
-            case self::VIEW:
-                return $this->canView($subject, $user);
-            case self::DELETE:
-                return $this->canDelete($subject, $user);
-        }
-
-        return false;
+        return match ($attribute) {
+            self::VIEW => $this->canView($subject, $user),
+            self::DELETE => $this->canDelete($subject, $user),
+            default => false,
+        };
     }
 
     /**

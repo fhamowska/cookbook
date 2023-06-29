@@ -6,6 +6,7 @@
 namespace App\Entity;
 
 use App\Repository\RecipeRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -50,94 +51,64 @@ class Recipe
      * Title.
      */
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Type('string')]
     private ?string $title = null;
 
     /**
      * Category.
-     *
-     * @var Category
-     *
-     * * @ORM\ManyToOne(
-     *     targetEntity="App\Entity\Category",
-     *     inversedBy="recipes",
-     *     fetch="EXTRA_LAZY",
-     * )
-     *
-     * @ORM\JoinTable(name="recipes_categories")
      */
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
+    #[Assert\Type(Category::class)]
     #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinTable(name: 'recipes_categories')]
     private ?Category $category = null;
 
+    /**
+     * Content.
+     */
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
+    #[Assert\Type('string')]
     private ?string $content = null;
 
     /**
-     * Slug.
-     */
-    #[ORM\Column(type: 'string', length: 64)]
-    #[Gedmo\Slug(fields: ['title'])]
-    private ?string $slug;
-    /**
      * Tags.
-     *
-     * @var array
-     *
-     * @ORM\ManyToMany(
-     *     targetEntity="App\Entity\Tag",
-     *     inversedBy="recipes",
-     *     fetch="EXTRA_LAZY",
-     * )
-     *
-     * @ORM\JoinTable(name="recipes_tags")
-     *
-     * @Assert\Type(type="Doctrine\Common\Collections\Collection")
      */
     #[Assert\Valid]
     #[ORM\ManyToMany(targetEntity: Tag::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
     #[ORM\JoinTable(name: 'recipes_tags')]
-    private $tags;
+    private ?Collection $tags;
 
     /**
      * Comments.
-     *
-     * @var Comment|null
      */
+    #[Assert\Valid]
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Comment::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
-    private $comments;
+    private ?Collection $comments;
 
     /**
      * Ratings.
-     *
-     * @var Rating|null
      */
+    #[Assert\Valid]
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Rating::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
-    private $ratings;
+    private ?Collection $ratings;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
+     * Average Rating.
      */
-    private $averageRating;
+    #[Assert\Valid]
+    #[ORM\Column(type: 'float')]
+    #[Assert\Type('float')]
+    private ?float $averageRating;
 
     /**
      * Ingredients.
-     *
-     * @var array
-     *
-     * @ORM\ManyToMany(
-     *     targetEntity="App\Entity\Ingredient",
-     *     inversedBy="recipes",
-     *     fetch="EXTRA_LAZY",
-     * )
-     *
-     * @ORM\JoinTable(name="recipes_ingredients")
-     *
-     * @Assert\Type(type="Doctrine\Common\Collections\Collection")
      */
     #[Assert\Valid]
     #[ORM\ManyToMany(targetEntity: Ingredient::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
     #[ORM\JoinTable(name: 'recipes_ingredients')]
-    private $ingredients;
+    private ?Collection $ingredients;
 
     /**
      * Constructor.
@@ -244,7 +215,6 @@ class Recipe
         return $this;
     }
 
-
     /**
      * Getter for content.
      *
@@ -258,37 +228,12 @@ class Recipe
     /**
      * Setter for content.
      *
-     * @param string|null $content Content
+     * @param string $content Content
      */
     public function setContent(string $content): void
     {
         $this->content = $content;
     }
-
-    /**
-     * Getter for slug.
-     *
-     * @return string|null Slug
-     */
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Setter for slug.
-     *
-     * @param string $slug Slug
-     *
-     * @return self Self
-     */
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
 
     /**
      * Getter for tags.
@@ -368,35 +313,27 @@ class Recipe
      * Add comment.
      *
      * @param Comment $comment Comment
-     *
-     * @return $this
      */
-    public function addComment(Comment $comment): self
+    public function addComment(Comment $comment): void
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
             $comment->setRecipe($this);
         }
-
-        return $this;
     }
 
     /**
      * Remove comment.
      *
      * @param Comment $comment Comment
-     *
-     * @return $this
      */
-    public function removeComment(Comment $comment): self
+    public function removeComment(Comment $comment): void
     {
         if ($this->comments->removeElement($comment)) {
             if ($comment->getRecipe() === $this) {
                 $comment->setRecipe(null);
             }
         }
-
-        return $this;
     }
 
     /**
@@ -413,58 +350,46 @@ class Recipe
      * Add rating.
      *
      * @param Rating $rating Rating
-     *
-     * @return $this
      */
-    public function addRating(Rating $rating): self
+    public function addRating(Rating $rating): void
     {
         if (!$this->ratings->contains($rating)) {
             $this->ratings[] = $rating;
             $rating->setRecipe($this);
         }
-
-        return $this;
     }
 
     /**
      * Remove rating.
      *
      * @param Rating $rating Rating
-     *
-     * @return $this
      */
-    public function removeRating(Rating $rating): self
+    public function removeRating(Rating $rating): void
     {
         if ($this->ratings->removeElement($rating)) {
             if ($rating->getRecipe() === $this) {
                 $rating->setRecipe(null);
             }
         }
-
-        return $this;
     }
 
     /**
-     * Get the average rating for the recipe.
+     * Setter for averageRating.
+     *
+     * @param float|null $averageRating Average rating
+     */
+    public function setAverageRating(?float $averageRating): void
+    {
+        $this->averageRating = $averageRating;
+    }
+
+    /**
+     * Getter for averageRating.
      *
      * @return float|null Average rating
      */
     public function getAverageRating(): ?float
     {
-        $ratings = $this->getRatings();
-
-        if ($ratings->isEmpty()) {
-            return null;
-        }
-
-        $total = 0;
-        $count = 0;
-
-        foreach ($ratings as $rating) {
-            $total += $rating->getValue();
-            ++$count;
-        }
-
-        return $total / $count;
+        return $this->averageRating;
     }
 }
