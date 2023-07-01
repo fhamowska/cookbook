@@ -23,7 +23,6 @@ $ composer install
 $ bin/console make:migration
 $ bin/console doctrine:migrations:migrate
 $ bin/console doctrine:fixtures:load
-$ bin/console server:run
 ```
 
 - The home page is at `/recipe`
