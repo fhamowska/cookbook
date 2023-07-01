@@ -107,6 +107,20 @@ class RecipeService implements RecipeServiceInterface
     }
 
     /**
+     * Get recipe with its associated entities.
+     *
+     * @param int $id Id
+     *
+     * @return Recipe|null Recipe
+     *
+     * @throws NonUniqueResultException
+     */
+    public function getRecipeWithAssociations(int $id): ?Recipe
+    {
+        return $this->recipeRepository->getRecipeWithAssociations($id);
+    }
+
+    /**
      * Prepare filters for the recipes list.
      *
      * @param array<string, int> $filters Raw filters from request

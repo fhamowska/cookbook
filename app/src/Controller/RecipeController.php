@@ -68,7 +68,7 @@ class RecipeController extends AbstractController
     /**
      * Show action.
      *
-     * @param Recipe                 $recipe        Recipe entity
+     * @param int                    $id            Recipe ID
      * @param RatingServiceInterface $ratingService Rating service
      *
      * @return Response HTTP response
@@ -76,8 +76,10 @@ class RecipeController extends AbstractController
      * @throws NonUniqueResultException
      */
     #[Route('/{id}', name: 'recipe_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
-    public function show(Recipe $recipe, RatingServiceInterface $ratingService): Response
+    public function show(int $id, RatingServiceInterface $ratingService): Response
     {
+        $recipe = $this->recipeService->getRecipeWithAssociations($id);
+
         $averageRating = $ratingService->calculateAvg($recipe);
         $recipe->setAverageRating($averageRating);
         $this->recipeService->save($recipe);
