@@ -138,12 +138,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/TagService.php"><a href="files/src-service-tagservice.html"><abbr title="src/Service/TagService.php">TagService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
-        
-    <section class="phpdocumentor-description"></section>
+            <p class="phpdocumentor-summary">Class TagService.</p>
+
 
 
 
@@ -175,35 +175,21 @@
     <span>
                         &nbsp;: <abbr title="\Knp\Component\Pager\PaginatorInterface">PaginatorInterface</abbr>            </span>
 </dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/App-Service-TagService.html#property_recipeRepository">$recipeRepository</a>
-    <span>
-                        &nbsp;: <a href="classes/App-Repository-RecipeRepository.html"><abbr title="\App\Repository\RecipeRepository">RecipeRepository</abbr></a>            </span>
-</dt>
-<dd></dd>
+<dd>Paginator.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/App-Service-TagService.html#property_tagRepository">$tagRepository</a>
     <span>
                         &nbsp;: <a href="classes/App-Repository-TagRepository.html"><abbr title="\App\Repository\TagRepository">TagRepository</abbr></a>            </span>
 </dt>
-<dd></dd>
+<dd>Tag repository.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Service-TagService.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Service-TagService.html#method_canBeDeleted">canBeDeleted()</a>
-    <span>
-                                &nbsp;: bool    </span>
-</dt>
-<dd>Can Tag be deleted?</dd>
+<dd>Constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Service-TagService.html#method_delete">delete()</a>
@@ -211,6 +197,13 @@
                                 &nbsp;: void    </span>
 </dt>
 <dd>Delete entity.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Service-TagService.html#method_findOneById">findOneById()</a>
+    <span>
+                                &nbsp;: <a href="classes/App-Entity-Tag.html"><abbr title="\App\Entity\Tag">Tag</abbr></a>|null    </span>
+</dt>
+<dd>Find by id.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Service-TagService.html#method_findOneByTitle">findOneByTitle()</a>
@@ -261,53 +254,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/TagService.php"><a href="files/src-service-tagservice.html"><abbr title="src/Service/TagService.php">TagService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Paginator.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type"><abbr title="\Knp\Component\Pager\PaginatorInterface">PaginatorInterface</abbr></span>
     <span class="phpdocumentor-signature__name">$paginator</span>
     </code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
     
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_recipeRepository">
-        $recipeRepository
-        <a href="classes/App-Service-TagService.html#property_recipeRepository" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Service/TagService.php"><a href="files/src-service-tagservice.html"><abbr title="src/Service/TagService.php">TagService.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">18</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/App-Repository-RecipeRepository.html"><abbr title="\App\Repository\RecipeRepository">RecipeRepository</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$recipeRepository</span>
-    </code>
-
-        <section class="phpdocumentor-description"></section>
-
         <section class="phpdocumentor-description"></section>
 
     
@@ -329,19 +288,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/TagService.php"><a href="files/src-service-tagservice.html"><abbr title="src/Service/TagService.php">TagService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Tag repository.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type"><a href="classes/App-Repository-TagRepository.html"><abbr title="\App\Repository\TagRepository">TagRepository</abbr></a></span>
     <span class="phpdocumentor-signature__name">$tagRepository</span>
     </code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <section class="phpdocumentor-description"></section>
 
     
@@ -367,17 +326,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/TagService.php"><a href="files/src-service-tagservice.html"><abbr title="src/Service/TagService.php">TagService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Constructor.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-TagRepository.html"><abbr title="\App\Repository\TagRepository">TagRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tagRepository</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Knp\Component\Pager\PaginatorInterface">PaginatorInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$paginator</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-RecipeRepository.html"><abbr title="\App\Repository\RecipeRepository">RecipeRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$recipeRepository</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-TagRepository.html"><abbr title="\App\Repository\TagRepository">TagRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tagRepository</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Knp\Component\Pager\PaginatorInterface">PaginatorInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$paginator</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -385,7 +344,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-TagRepository.html"><abbr title="\App\Repository\TagRepository">TagRepository</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Tag repository</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
@@ -393,15 +353,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Knp\Component\Pager\PaginatorInterface">PaginatorInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$recipeRepository</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-RecipeRepository.html"><abbr title="\App\Repository\RecipeRepository">RecipeRepository</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Paginator</p>
+</section>
 
             </dd>
             </dl>
@@ -420,53 +373,6 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_canBeDeleted">
-        canBeDeleted()
-        <a href="classes/App-Service-TagService.html#method_canBeDeleted" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Service/TagService.php"><a href="files/src-service-tagservice.html"><abbr title="src/Service/TagService.php">TagService.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">64</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Can Tag be deleted?</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">canBeDeleted</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Tag.html"><abbr title="\App\Entity\Tag">Tag</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$tag</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Tag.html"><abbr title="\App\Entity\Tag">Tag</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Tag entity</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>Result</p>
-</section>
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_delete">
         delete()
         <a href="classes/App-Service-TagService.html#method_delete" class="headerlink"><i class="fas fa-link"></i></a>
@@ -474,7 +380,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/TagService.php"><a href="files/src-service-tagservice.html"><abbr title="src/Service/TagService.php">TagService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
@@ -482,13 +388,13 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">delete</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Tag.html"><abbr title="\App\Entity\Tag">Tag</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                <span class="phpdocumentor-signature__name">delete</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Tag.html"><abbr title="\App\Entity\Tag">Tag</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tags</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$tag</span>
+                <span class="phpdocumentor-signature__argument__name">$tags</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Tag.html"><abbr title="\App\Entity\Tag">Tag</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -512,6 +418,67 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_findOneById">
+        findOneById()
+        <a href="classes/App-Service-TagService.html#method_findOneById" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Service/TagService.php"><a href="files/src-service-tagservice.html"><abbr title="src/Service/TagService.php">TagService.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">98</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Find by id.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">findOneById</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/App-Entity-Tag.html"><abbr title="\App\Entity\Tag">Tag</abbr></a>|null</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Tag id</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Doctrine\ORM\NonUniqueResultException">NonUniqueResultException</abbr></span>
+                                                            
+                                             
+                                    </dd>
+                        </dl>
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/App-Entity-Tag.html"><abbr title="\App\Entity\Tag">Tag</abbr></a>|null</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>Tag entity</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_findOneByTitle">
         findOneByTitle()
         <a href="classes/App-Service-TagService.html#method_findOneByTitle" class="headerlink"><i class="fas fa-link"></i></a>
@@ -519,7 +486,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/TagService.php"><a href="files/src-service-tagservice.html"><abbr title="src/Service/TagService.php">TagService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">82</span>
+    <span class="phpdocumentor-element-found-in__line">84</span>
 
     </aside>
 
@@ -566,7 +533,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/TagService.php"><a href="files/src-service-tagservice.html"><abbr title="src/Service/TagService.php">TagService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
@@ -613,7 +580,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/TagService.php"><a href="files/src-service-tagservice.html"><abbr title="src/Service/TagService.php">TagService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
@@ -621,13 +588,13 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">save</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Tag.html"><abbr title="\App\Entity\Tag">Tag</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                <span class="phpdocumentor-signature__name">save</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Tag.html"><abbr title="\App\Entity\Tag">Tag</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tags</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$tag</span>
+                <span class="phpdocumentor-signature__argument__name">$tags</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Tag.html"><abbr title="\App\Entity\Tag">Tag</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">

@@ -135,7 +135,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -171,6 +171,13 @@
 
 <dl class="phpdocumentor-table-of-contents">
                     <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/App-Entity-Recipe.html#property_averageRating">$averageRating</a>
+    <span>
+                        &nbsp;: float|null            </span>
+</dt>
+<dd>Average Rating.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/App-Entity-Recipe.html#property_category">$category</a>
     <span>
                         &nbsp;: <a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null            </span>
@@ -178,18 +185,18 @@
 <dd>Category.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/App-Entity-Recipe.html#property_comment">$comment</a>
+    <a href="classes/App-Entity-Recipe.html#property_comments">$comments</a>
     <span>
-                        &nbsp;: string|null            </span>
+                        &nbsp;: <abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>|null            </span>
 </dt>
-<dd></dd>
+<dd>Comments.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/App-Entity-Recipe.html#property_content">$content</a>
     <span>
                         &nbsp;: string|null            </span>
 </dt>
-<dd></dd>
+<dd>Content.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/App-Entity-Recipe.html#property_createdAt">$createdAt</a>
@@ -206,16 +213,23 @@
 <dd>Primary key.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/App-Entity-Recipe.html#property_slug">$slug</a>
+    <a href="classes/App-Entity-Recipe.html#property_ingredients">$ingredients</a>
     <span>
-                        &nbsp;: string|null            </span>
+                        &nbsp;: <abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>|null            </span>
 </dt>
-<dd>Slug.</dd>
+<dd>Ingredients.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/App-Entity-Recipe.html#property_ratings">$ratings</a>
+    <span>
+                        &nbsp;: <abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>|null            </span>
+</dt>
+<dd>Ratings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/App-Entity-Recipe.html#property_tags">$tags</a>
     <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
+                        &nbsp;: <abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>|null            </span>
 </dt>
 <dd>Tags.</dd>
 
@@ -238,7 +252,28 @@
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
+<dd>Constructor.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Entity-Recipe.html#method_addComment">addComment()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Add comment.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Entity-Recipe.html#method_addIngredient">addIngredient()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Add ingredient.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Entity-Recipe.html#method_addRating">addRating()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Add rating.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Entity-Recipe.html#method_addTag">addTag()</a>
@@ -248,18 +283,25 @@
 <dd>Add tag.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Entity-Recipe.html#method_getAverageRating">getAverageRating()</a>
+    <span>
+                                &nbsp;: float|null    </span>
+</dt>
+<dd>Getter for averageRating.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Entity-Recipe.html#method_getCategory">getCategory()</a>
     <span>
                                 &nbsp;: <a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null    </span>
 </dt>
-<dd></dd>
+<dd>Getter for category.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Entity-Recipe.html#method_getComment">getComment()</a>
+    <a href="classes/App-Entity-Recipe.html#method_getComments">getComments()</a>
     <span>
-                                &nbsp;: string|null    </span>
+                                &nbsp;: <abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>&lt;int, <a href="classes/App-Entity-Comment.html"><abbr title="\App\Entity\Comment">Comment</abbr></a>&gt;    </span>
 </dt>
-<dd></dd>
+<dd>Getter for comments.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Entity-Recipe.html#method_getContent">getContent()</a>
@@ -283,11 +325,18 @@
 <dd>Getter for Id.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Entity-Recipe.html#method_getSlug">getSlug()</a>
+    <a href="classes/App-Entity-Recipe.html#method_getIngredients">getIngredients()</a>
     <span>
-                                &nbsp;: string|null    </span>
+                                &nbsp;: <abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>&lt;int, <a href="classes/App-Entity-Ingredient.html"><abbr title="\App\Entity\Ingredient">Ingredient</abbr></a>&gt;    </span>
 </dt>
-<dd></dd>
+<dd>Getter for ingredients.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Entity-Recipe.html#method_getRatings">getRatings()</a>
+    <span>
+                                &nbsp;: <abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>&lt;int, <a href="classes/App-Entity-Rating.html"><abbr title="\App\Entity\Rating">Rating</abbr></a>&gt;    </span>
+</dt>
+<dd>Getter for ratings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Entity-Recipe.html#method_getTags">getTags()</a>
@@ -311,6 +360,27 @@
 <dd>Getter for updated at.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Entity-Recipe.html#method_removeComment">removeComment()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Remove comment.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Entity-Recipe.html#method_removeIngredient">removeIngredient()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Remove ingredient.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Entity-Recipe.html#method_removeRating">removeRating()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Remove rating.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Entity-Recipe.html#method_removeTag">removeTag()</a>
     <span>
                                 &nbsp;: void    </span>
@@ -318,18 +388,18 @@
 <dd>Remove tag.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Entity-Recipe.html#method_setAverageRating">setAverageRating()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Setter for averageRating.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Entity-Recipe.html#method_setCategory">setCategory()</a>
     <span>
                                 &nbsp;: self    </span>
 </dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Entity-Recipe.html#method_setComment">setComment()</a>
-    <span>
-                                &nbsp;: self    </span>
-</dt>
-<dd></dd>
+<dd>Setter for category.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Entity-Recipe.html#method_setContent">setContent()</a>
@@ -344,13 +414,6 @@
                                 &nbsp;: void    </span>
 </dt>
 <dd>Setter for created at.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Entity-Recipe.html#method_setSlug">setSlug()</a>
-    <span>
-                                &nbsp;: self    </span>
-</dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Entity-Recipe.html#method_setTitle">setTitle()</a>
@@ -385,6 +448,40 @@
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_averageRating">
+        $averageRating
+        <a href="classes/App-Entity-Recipe.html#property_averageRating" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">100</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Average Rating.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">float|null</span>
+    <span class="phpdocumentor-signature__name">$averageRating</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_category">
         $category
         <a href="classes/App-Entity-Recipe.html#property_category" class="headerlink"><i class="fas fa-link"></i></a>
@@ -394,7 +491,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">71</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -407,31 +504,9 @@
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
-        <section class="phpdocumentor-description"><ul>
-<li>@ORM\ManyToOne(
-targetEntity=&quot;App\Entity\Category&quot;,
-inversedBy=&quot;recipes&quot;,
-fetch=&quot;EXTRA_LAZY&quot;,
-)</li>
-</ul>
-</section>
+        <section class="phpdocumentor-description"></section>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">ORM\JoinTable</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>(name=&quot;recipes_categories&quot;)</p>
-</section>
-
-                                    </dd>
-                        </dl>
 
 </article>
                     <article
@@ -441,28 +516,28 @@ fetch=&quot;EXTRA_LAZY&quot;,
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_comment">
-        $comment
-        <a href="classes/App-Entity-Recipe.html#property_comment" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_comments">
+        $comments
+        <a href="classes/App-Entity-Recipe.html#property_comments" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Comments.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$comment</span>
-     = <span class="phpdocumentor-signature__default-value">null</span></code>
+        <span class="phpdocumentor-signature__type"><abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>|null</span>
+    <span class="phpdocumentor-signature__name">$comments</span>
+    </code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <section class="phpdocumentor-description"></section>
 
     
@@ -484,19 +559,19 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Content.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$content</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <section class="phpdocumentor-description"></section>
 
     
@@ -518,7 +593,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -552,7 +627,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
@@ -577,25 +652,59 @@ fetch=&quot;EXTRA_LAZY&quot;,
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_slug">
-        $slug
-        <a href="classes/App-Entity-Recipe.html#property_slug" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_ingredients">
+        $ingredients
+        <a href="classes/App-Entity-Recipe.html#property_ingredients" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">81</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Slug.</p>
+        <p class="phpdocumentor-summary">Ingredients.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$slug</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>|null</span>
+    <span class="phpdocumentor-signature__name">$ingredients</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_ratings">
+        $ratings
+        <a href="classes/App-Entity-Recipe.html#property_ratings" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">93</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Ratings.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>|null</span>
+    <span class="phpdocumentor-signature__name">$ratings</span>
     </code>
 
     
@@ -620,7 +729,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">99</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
@@ -628,50 +737,14 @@ fetch=&quot;EXTRA_LAZY&quot;,
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>|null</span>
     <span class="phpdocumentor-signature__name">$tags</span>
     </code>
 
     
+        <section class="phpdocumentor-description"></section>
+
     
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">ORM\ManyToMany</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>(
-targetEntity=&quot;App\Entity\Tag&quot;,
-inversedBy=&quot;recipes&quot;,
-fetch=&quot;EXTRA_LAZY&quot;,
-)</p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">ORM\JoinTable</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>(name=&quot;recipes_tags&quot;)</p>
-</section>
-
-                                    </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">Assert\Type</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>(type=&quot;Doctrine\Common\Collections\Collection&quot;)</p>
-</section>
-
-                                    </dd>
-                        </dl>
 
 </article>
                     <article
@@ -690,7 +763,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -724,7 +797,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -762,22 +835,157 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">104</span>
+    <span class="phpdocumentor-element-found-in__line">116</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Constructor.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addComment">
+        addComment()
+        <a href="classes/App-Entity-Recipe.html#method_addComment" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">317</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Add comment.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">addComment</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Comment.html"><abbr title="\App\Entity\Comment">Comment</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$comment</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$comment</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Comment.html"><abbr title="\App\Entity\Comment">Comment</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Comment</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addIngredient">
+        addIngredient()
+        <a href="classes/App-Entity-Recipe.html#method_addIngredient" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">285</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Add ingredient.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">addIngredient</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Ingredient.html"><abbr title="\App\Entity\Ingredient">Ingredient</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ingredient</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$ingredient</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Ingredient.html"><abbr title="\App\Entity\Ingredient">Ingredient</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Ingredient entity</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addRating">
+        addRating()
+        <a href="classes/App-Entity-Recipe.html#method_addRating" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">354</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Add rating.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">addRating</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Rating.html"><abbr title="\App\Entity\Rating">Rating</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rating</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$rating</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Rating.html"><abbr title="\App\Entity\Rating">Rating</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Rating</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -795,7 +1003,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">250</span>
+    <span class="phpdocumentor-element-found-in__line">253</span>
 
     </aside>
 
@@ -833,31 +1041,33 @@ fetch=&quot;EXTRA_LAZY&quot;,
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getCategory">
-        getCategory()
-        <a href="classes/App-Entity-Recipe.html#method_getCategory" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getAverageRating">
+        getAverageRating()
+        <a href="classes/App-Entity-Recipe.html#method_getAverageRating" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">191</span>
+    <span class="phpdocumentor-element-found-in__line">391</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Getter for averageRating.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getCategory</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null</span></code>
+                <span class="phpdocumentor-signature__name">getAverageRating</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float|null</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null</span>
+    <span class="phpdocumentor-signature__response_type">float|null</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Average rating</p>
+</section>
+
     
 </article>
                     <article
@@ -866,29 +1076,64 @@ fetch=&quot;EXTRA_LAZY&quot;,
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getComment">
-        getComment()
-        <a href="classes/App-Entity-Recipe.html#method_getComment" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getCategory">
+        getCategory()
+        <a href="classes/App-Entity-Recipe.html#method_getCategory" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">179</span>
+    <span class="phpdocumentor-element-found-in__line">199</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Getter for category.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getComment</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+                <span class="phpdocumentor-signature__name">getCategory</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string|null</span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>Category</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getComments">
+        getComments()
+        <a href="classes/App-Entity-Recipe.html#method_getComments" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">307</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Getter for comments.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">getComments</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>&lt;int, <a href="classes/App-Entity-Comment.html"><abbr title="\App\Entity\Comment">Comment</abbr></a>&gt;</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>&lt;int, <a href="classes/App-Entity-Comment.html"><abbr title="\App\Entity\Comment">Comment</abbr></a>&gt;</span>
             &mdash;
         
     
@@ -906,7 +1151,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">208</span>
+    <span class="phpdocumentor-element-found-in__line">223</span>
 
     </aside>
 
@@ -941,7 +1186,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">124</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
@@ -976,7 +1221,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">114</span>
+    <span class="phpdocumentor-element-found-in__line">129</span>
 
     </aside>
 
@@ -1004,29 +1249,64 @@ fetch=&quot;EXTRA_LAZY&quot;,
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getSlug">
-        getSlug()
-        <a href="classes/App-Entity-Recipe.html#method_getSlug" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getIngredients">
+        getIngredients()
+        <a href="classes/App-Entity-Recipe.html#method_getIngredients" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">223</span>
+    <span class="phpdocumentor-element-found-in__line">275</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Getter for ingredients.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getSlug</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+                <span class="phpdocumentor-signature__name">getIngredients</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>&lt;int, <a href="classes/App-Entity-Ingredient.html"><abbr title="\App\Entity\Ingredient">Ingredient</abbr></a>&gt;</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string|null</span>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>&lt;int, <a href="classes/App-Entity-Ingredient.html"><abbr title="\App\Entity\Ingredient">Ingredient</abbr></a>&gt;</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>Ingredients collection</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getRatings">
+        getRatings()
+        <a href="classes/App-Entity-Recipe.html#method_getRatings" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">344</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Getter for ratings.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">getRatings</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>&lt;int, <a href="classes/App-Entity-Rating.html"><abbr title="\App\Entity\Rating">Rating</abbr></a>&gt;</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\Doctrine\Common\Collections\Collection">Collection</abbr>&lt;int, <a href="classes/App-Entity-Rating.html"><abbr title="\App\Entity\Rating">Rating</abbr></a>&gt;</span>
             &mdash;
         
     
@@ -1044,7 +1324,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">240</span>
+    <span class="phpdocumentor-element-found-in__line">243</span>
 
     </aside>
 
@@ -1079,7 +1359,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">164</span>
+    <span class="phpdocumentor-element-found-in__line">179</span>
 
     </aside>
 
@@ -1114,7 +1394,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">144</span>
+    <span class="phpdocumentor-element-found-in__line">159</span>
 
     </aside>
 
@@ -1142,6 +1422,141 @@ fetch=&quot;EXTRA_LAZY&quot;,
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_removeComment">
+        removeComment()
+        <a href="classes/App-Entity-Recipe.html#method_removeComment" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">330</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Remove comment.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">removeComment</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Comment.html"><abbr title="\App\Entity\Comment">Comment</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$comment</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$comment</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Comment.html"><abbr title="\App\Entity\Comment">Comment</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Comment</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_removeIngredient">
+        removeIngredient()
+        <a href="classes/App-Entity-Recipe.html#method_removeIngredient" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">297</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Remove ingredient.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">removeIngredient</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Ingredient.html"><abbr title="\App\Entity\Ingredient">Ingredient</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ingredient</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$ingredient</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Ingredient.html"><abbr title="\App\Entity\Ingredient">Ingredient</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Ingredient entity</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_removeRating">
+        removeRating()
+        <a href="classes/App-Entity-Recipe.html#method_removeRating" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">367</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Remove rating.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">removeRating</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Rating.html"><abbr title="\App\Entity\Rating">Rating</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rating</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$rating</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Rating.html"><abbr title="\App\Entity\Rating">Rating</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Rating</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_removeTag">
         removeTag()
         <a href="classes/App-Entity-Recipe.html#method_removeTag" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1149,7 +1564,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">262</span>
+    <span class="phpdocumentor-element-found-in__line">265</span>
 
     </aside>
 
@@ -1187,32 +1602,33 @@ fetch=&quot;EXTRA_LAZY&quot;,
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_setCategory">
-        setCategory()
-        <a href="classes/App-Entity-Recipe.html#method_setCategory" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_setAverageRating">
+        setAverageRating()
+        <a href="classes/App-Entity-Recipe.html#method_setAverageRating" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">196</span>
+    <span class="phpdocumentor-element-found-in__line">381</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Setter for averageRating.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setCategory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$category</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+                <span class="phpdocumentor-signature__name">setAverageRating</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">float|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$averageRating</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$category</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null</span>
+                <span class="phpdocumentor-signature__argument__name">$averageRating</span>
+                : <span class="phpdocumentor-signature__argument__return-type">float|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Average rating</p>
+</section>
 
             </dd>
             </dl>
@@ -1220,7 +1636,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">self</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -1231,32 +1647,33 @@ fetch=&quot;EXTRA_LAZY&quot;,
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_setComment">
-        setComment()
-        <a href="classes/App-Entity-Recipe.html#method_setComment" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_setCategory">
+        setCategory()
+        <a href="classes/App-Entity-Recipe.html#method_setCategory" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">184</span>
+    <span class="phpdocumentor-element-found-in__line">211</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Setter for category.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setComment</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$comment</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+                <span class="phpdocumentor-signature__name">setCategory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$category</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$comment</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
+                <span class="phpdocumentor-signature__argument__name">$category</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Category</p>
+</section>
 
             </dd>
             </dl>
@@ -1266,7 +1683,9 @@ fetch=&quot;EXTRA_LAZY&quot;,
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">self</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Self</p>
+</section>
+
     
 </article>
                     <article
@@ -1282,7 +1701,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">218</span>
+    <span class="phpdocumentor-element-found-in__line">233</span>
 
     </aside>
 
@@ -1290,14 +1709,14 @@ fetch=&quot;EXTRA_LAZY&quot;,
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setContent</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$content</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                <span class="phpdocumentor-signature__name">setContent</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$content</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$content</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Content</p>
@@ -1327,7 +1746,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">134</span>
+    <span class="phpdocumentor-element-found-in__line">149</span>
 
     </aside>
 
@@ -1365,50 +1784,6 @@ fetch=&quot;EXTRA_LAZY&quot;,
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_setSlug">
-        setSlug()
-        <a href="classes/App-Entity-Recipe.html#method_setSlug" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">228</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setSlug</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$slug</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$slug</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">self</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_setTitle">
         setTitle()
         <a href="classes/App-Entity-Recipe.html#method_setTitle" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1416,7 +1791,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">174</span>
+    <span class="phpdocumentor-element-found-in__line">189</span>
 
     </aside>
 
@@ -1461,7 +1836,7 @@ fetch=&quot;EXTRA_LAZY&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Entity/Recipe.php"><a href="files/src-entity-recipe.html"><abbr title="src/Entity/Recipe.php">Recipe.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">154</span>
+    <span class="phpdocumentor-element-found-in__line">169</span>
 
     </aside>
 

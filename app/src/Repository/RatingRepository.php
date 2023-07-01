@@ -14,6 +14,8 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class RatingRepository.
+ *
  * @method Rating|null find($id, $lockMode = null, $lockVersion = null)
  * @method Rating|null findOneBy(array $criteria, array $orderBy = null)
  * @method Rating[]    findAll()

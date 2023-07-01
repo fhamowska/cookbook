@@ -138,12 +138,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/CategoryService.php"><a href="files/src-service-categoryservice.html"><abbr title="src/Service/CategoryService.php">CategoryService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
-        
-    <section class="phpdocumentor-description"></section>
+            <p class="phpdocumentor-summary">Class CategoryService.</p>
+
 
 
 
@@ -196,7 +196,7 @@
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
+<dd>CategoryService constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Service-CategoryService.html#method_canBeDeleted">canBeDeleted()</a>
@@ -213,9 +213,16 @@
 <dd>Delete entity.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Service-CategoryService.html#method_findOneById">findOneById()</a>
+    <span>
+                                &nbsp;: <a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null    </span>
+</dt>
+<dd>Find by id.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Service-CategoryService.html#method_getPaginatedList">getPaginatedList()</a>
     <span>
-                                &nbsp;: <abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr>&lt;string, mixed&gt;    </span>
+                                &nbsp;: <abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr>    </span>
 </dt>
 <dd>Get paginated list.</dd>
 
@@ -254,7 +261,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/CategoryService.php"><a href="files/src-service-categoryservice.html"><abbr title="src/Service/CategoryService.php">CategoryService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -288,7 +295,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/CategoryService.php"><a href="files/src-service-categoryservice.html"><abbr title="src/Service/CategoryService.php">CategoryService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -322,7 +329,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/CategoryService.php"><a href="files/src-service-categoryservice.html"><abbr title="src/Service/CategoryService.php">CategoryService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -360,17 +367,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/CategoryService.php"><a href="files/src-service-categoryservice.html"><abbr title="src/Service/CategoryService.php">CategoryService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">CategoryService constructor.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-CategoryRepository.html"><abbr title="\App\Repository\CategoryRepository">CategoryRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$categoryRepository</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Knp\Component\Pager\PaginatorInterface">PaginatorInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$paginator</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-RecipeRepository.html"><abbr title="\App\Repository\RecipeRepository">RecipeRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$recipeRepository</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -378,7 +385,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-CategoryRepository.html"><abbr title="\App\Repository\CategoryRepository">CategoryRepository</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Category repository</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
@@ -386,7 +394,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Knp\Component\Pager\PaginatorInterface">PaginatorInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Paginator</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
@@ -394,7 +403,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-RecipeRepository.html"><abbr title="\App\Repository\RecipeRepository">RecipeRepository</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Recipe repository</p>
+</section>
 
             </dd>
             </dl>
@@ -420,7 +430,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/CategoryService.php"><a href="files/src-service-categoryservice.html"><abbr title="src/Service/CategoryService.php">CategoryService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">83</span>
 
     </aside>
 
@@ -467,7 +477,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/CategoryService.php"><a href="files/src-service-categoryservice.html"><abbr title="src/Service/CategoryService.php">CategoryService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
@@ -505,6 +515,67 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_findOneById">
+        findOneById()
+        <a href="classes/App-Service-CategoryService.html#method_findOneById" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Service/CategoryService.php"><a href="files/src-service-categoryservice.html"><abbr title="src/Service/CategoryService.php">CategoryService.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">103</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Find by id.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">findOneById</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Category id</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Doctrine\ORM\NonUniqueResultException">NonUniqueResultException</abbr></span>
+                                                            
+                                             
+                                    </dd>
+                        </dl>
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/App-Entity-Category.html"><abbr title="\App\Entity\Category">Category</abbr></a>|null</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>Category entity</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getPaginatedList">
         getPaginatedList()
         <a href="classes/App-Service-CategoryService.html#method_getPaginatedList" class="headerlink"><i class="fas fa-link"></i></a>
@@ -512,7 +583,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/CategoryService.php"><a href="files/src-service-categoryservice.html"><abbr title="src/Service/CategoryService.php">CategoryService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -520,7 +591,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getPaginatedList</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr>&lt;string, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">getPaginatedList</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr></span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -539,7 +610,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr>&lt;string, mixed&gt;</span>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\Knp\Component\Pager\Pagination\PaginationInterface">PaginationInterface</abbr></span>
             &mdash;
             <section class="phpdocumentor-description"><p>Paginated list</p>
 </section>
@@ -559,7 +630,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Service/CategoryService.php"><a href="files/src-service-categoryservice.html"><abbr title="src/Service/CategoryService.php">CategoryService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
