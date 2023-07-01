@@ -87,10 +87,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Delete record.
      *
-     * @param \App\Entity\User $user User entity
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @param User $user User entity
      */
     public function delete(User $user): void
     {

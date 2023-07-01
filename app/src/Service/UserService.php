@@ -8,8 +8,6 @@ namespace App\Service;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -84,9 +82,6 @@ class UserService implements UserServiceInterface
      * Delete user.
      *
      * @param User $user User entity
-     *
-     * @throws ORMException
-     * @throws OptimisticLockException
      */
     public function delete(User $user): void
     {
