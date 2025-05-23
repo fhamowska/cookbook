@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Comment voter.
  */
@@ -76,7 +77,7 @@ class CommentVoter extends Voter
      *
      * @return bool Result
      */
-    private function canView(Comment $comment, User $user): bool
+    private function canView(Comment $comment, UserInterface $user): bool
     {
         $userRoles = $user->getRoles();
         if (in_array('ROLE_ADMIN', $userRoles, true)) {
@@ -94,7 +95,7 @@ class CommentVoter extends Voter
      *
      * @return bool Result
      */
-    private function canDelete(Comment $comment, User $user): bool
+    private function canDelete(Comment $comment, UserInterface $user): bool
     {
         $userRoles = $user->getRoles();
         if (in_array('ROLE_ADMIN', $userRoles, true)) {

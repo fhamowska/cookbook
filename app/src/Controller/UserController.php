@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User controller.
  */
@@ -69,14 +70,13 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[IsGranted('ROLE_ADMIN')]
-    #[Route('/all', name: 'user_index', methods: 'GET')]
+    #[Route('/user/all', name: 'user_index', methods: 'GET')]
     public function index(Request $request): Response
     {
         $pagination = $this->userService->getPaginatedList($request->query->getInt('page', 1));
 
         return $this->render('user/index.html.twig', ['pagination' => $pagination]);
     }
-
     /**
      * Edit action.
      *
@@ -86,22 +86,19 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/edit_password',
+        '/user/{id}/edit_password',
         name: 'user_edit_password',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'
     )]
     public function edit(Request $request, User $user): Response
     {
-        if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)) {
-            if ($user !== $this->getUser()) {
-                $this->addFlash(
-                    'warning',
-                    $this->translator->trans('message.record_not_found')
-                );
-
-                return $this->redirectToRoute('recipe_index');
-            }
+        if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true) && $user !== $this->getUser()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.record_not_found')
+            );
+            return $this->redirectToRoute('recipe_index');
         }
 
         $form = $this->createForm(
@@ -144,7 +141,6 @@ class UserController extends AbstractController
             ]
         );
     }
-
     /**
      * Delete action.
      *
@@ -154,7 +150,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/delete',
+        '/user/{id}/delete',
         name: 'user_delete',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'
@@ -218,7 +214,6 @@ class UserController extends AbstractController
             ]
         );
     }
-
     /**
      * EditEmail action.
      *
@@ -228,22 +223,19 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}/edit_email',
+        '/user/{id}/edit_email',
         name: 'user_edit_email',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'
     )]
     public function editEmail(Request $request, User $user): Response
     {
-        if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)) {
-            if ($user !== $this->getUser()) {
-                $this->addFlash(
-                    'warning',
-                    $this->translator->trans('message.record_not_found')
-                );
-
-                return $this->redirectToRoute('recipe_index');
-            }
+        if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true) && $user !== $this->getUser()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.record_not_found')
+            );
+            return $this->redirectToRoute('recipe_index');
         }
 
         $form = $this->createForm(

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Recipe type.
  */
@@ -100,9 +101,9 @@ class RecipeType extends AbstractType
                 'label' => 'label.content',
                 'required' => true,
                 'attr' => [
-                        'max_length' => 8000,
-                        'rows' => 20,
-                    ],
+                    'max_length' => 8000,
+                    'rows' => 20,
+                ],
             ]
         );
         $builder->add(

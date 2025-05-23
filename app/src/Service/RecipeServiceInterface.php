@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Recipe service interface.
  */

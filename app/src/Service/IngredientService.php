@@ -85,7 +85,7 @@ class IngredientService implements IngredientServiceInterface
         try {
             $result = $this->recipeRepository->countByIngredient($ingredient);
 
-            return !($result > 0);
+            return $result <= 0;
         } catch (NoResultException|NonUniqueResultException) {
             return false;
         }

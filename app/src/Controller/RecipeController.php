@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Recipe controller.
  */
@@ -75,7 +76,7 @@ class RecipeController extends AbstractController
      *
      * @throws NonUniqueResultException
      */
-    #[Route('/{id}', name: 'recipe_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
+    #[Route('/recipe/{id}', name: 'recipe_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
     public function show(int $id, RatingServiceInterface $ratingService): Response
     {
         $recipe = $this->recipeService->getRecipeWithAssociations($id);
@@ -94,7 +95,7 @@ class RecipeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/create', name: 'recipe_create', methods: 'GET|POST')]
+    #[Route('/recipe/create', name: 'recipe_create', methods: 'GET|POST')]
     #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
@@ -128,7 +129,7 @@ class RecipeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/edit', name: 'recipe_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[Route('/recipe/{id}/edit', name: 'recipe_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Recipe $recipe): Response
     {
@@ -170,7 +171,7 @@ class RecipeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/delete', name: 'recipe_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[Route('/recipe/{id}/delete', name: 'recipe_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Recipe $recipe): Response
     {
@@ -203,7 +204,6 @@ class RecipeController extends AbstractController
             ]
         );
     }
-
     /**
      * Get filters from request.
      *
@@ -215,10 +215,6 @@ class RecipeController extends AbstractController
      */
     private function getFilters(Request $request): array
     {
-        $filters = [];
-        $filters['category_id'] = $request->query->getInt('filters_category_id');
-        $filters['tag_id'] = $request->query->getInt('filters_tag_id');
-
-        return $filters;
+        return ['category_id' => $request->query->getInt('filters_category_id'), 'tag_id' => $request->query->getInt('filters_tag_id')];
     }
 }

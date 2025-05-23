@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ingredients data transformer.
  */
@@ -70,7 +71,7 @@ class IngredientsDataTransformer implements DataTransformerInterface
         foreach ($ingredientTitles as $ingredientTitle) {
             if ('' !== trim($ingredientTitle)) {
                 $ingredient = $this->ingredientService->findOneByTitle(strtolower($ingredientTitle));
-                if (null === $ingredient) {
+                if (!$ingredient instanceof \App\Entity\Ingredient) {
                     $ingredient = new Ingredient();
                     $ingredient->setTitle($ingredientTitle);
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tag controller.
  */
@@ -70,7 +71,7 @@ class TagController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}',
+        '/tag/{id}',
         name: 'tag_show',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
@@ -88,7 +89,7 @@ class TagController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/create',
+        '/tag/create',
         name: 'tag_create',
         methods: 'GET|POST',
     )]
@@ -123,7 +124,7 @@ class TagController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/edit', name: 'tag_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[Route('/tag/{id}/edit', name: 'tag_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Tag $tag): Response
     {
         $form = $this->createForm(
@@ -164,7 +165,7 @@ class TagController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/delete', name: 'tag_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[Route('/tag/{id}/delete', name: 'tag_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Tag $tag): Response
     {
         $form = $this->createForm(FormType::class, $tag, [

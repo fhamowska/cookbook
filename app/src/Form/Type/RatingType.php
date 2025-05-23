@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Rating type.
  */
@@ -33,17 +34,17 @@ class RatingType extends AbstractType
             'value',
             ChoiceType::class,
             [
-                    'placeholder' => 'label.none',
-                    'label' => 'label.rating',
-                    'required' => true,
-                    'choices' => [
-                        '1' => 1,
-                        '2' => 2,
-                        '3' => 3,
-                        '4' => 4,
-                        '5' => 5,
-                    ],
-                ]
+                'placeholder' => 'label.none',
+                'label' => 'label.rating',
+                'required' => true,
+                'choices' => [
+                    '1' => 1,
+                    '2' => 2,
+                    '3' => 3,
+                    '4' => 4,
+                    '5' => 5,
+                ],
+            ]
         );
     }
 

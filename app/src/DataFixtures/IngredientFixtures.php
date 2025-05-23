@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ingredient fixtures.
  */

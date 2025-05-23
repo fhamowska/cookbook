@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Recipe entity.
  */
@@ -6,7 +7,6 @@
 namespace App\Entity;
 
 use App\Repository\RecipeRepository;
-use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -329,10 +329,8 @@ class Recipe
      */
     public function removeComment(Comment $comment): void
     {
-        if ($this->comments->removeElement($comment)) {
-            if ($comment->getRecipe() === $this) {
-                $comment->setRecipe(null);
-            }
+        if ($this->comments->removeElement($comment) && $comment->getRecipe() === $this) {
+            $comment->setRecipe(null);
         }
     }
 
@@ -366,10 +364,8 @@ class Recipe
      */
     public function removeRating(Rating $rating): void
     {
-        if ($this->ratings->removeElement($rating)) {
-            if ($rating->getRecipe() === $this) {
-                $rating->setRecipe(null);
-            }
+        if ($this->ratings->removeElement($rating) && $rating->getRecipe() === $this) {
+            $rating->setRecipe(null);
         }
     }
 

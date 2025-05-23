@@ -1,7 +1,4 @@
 <?php
-/**
- * Rating fixtures.
- */
 
 namespace App\DataFixtures;
 
@@ -12,21 +9,12 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
  * Class RatingFixtures.
- *
- * @psalm-suppress MissingConstructor
  */
 class RatingFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
-    /**
-     * Load data.
-     *
-     * @psalm-suppress PossiblyNullPropertyFetch
-     * @psalm-suppress PossiblyNullReference
-     * @psalm-suppress UnusedClosureParam
-     */
     public function loadData(): void
     {
-        if (null === $this->manager || null === $this->faker) {
+        if (!$this->manager instanceof \Doctrine\Persistence\ObjectManager || !$this->faker instanceof \Faker\Generator) {
             return;
         }
 
@@ -35,11 +23,11 @@ class RatingFixtures extends AbstractBaseFixtures implements DependentFixtureInt
             $rating->setValue($this->faker->numberBetween(1, 5));
 
             /** @var Recipe $recipe */
-            $recipe = $this->getRandomReference('recipes');
+            $recipe = $this->getRandomReference('recipes', Recipe::class);
             $rating->setRecipe($recipe);
 
             /** @var User $author */
-            $author = $this->getRandomReference('users');
+            $author = $this->getRandomReference('users', User::class);
             $rating->setAuthor($author);
 
             return $rating;
@@ -48,16 +36,11 @@ class RatingFixtures extends AbstractBaseFixtures implements DependentFixtureInt
         $this->manager->flush();
     }
 
-    /**
-     * This method must return an array of fixtures classes
-     * on which the implementing class depends on.
-     *
-     * @return string[] of dependencies
-     *
-     * @psalm-return array{0: CategoryFixtures::class}
-     */
     public function getDependencies(): array
     {
-        return [RecipeFixtures::class];
+        return [
+            RecipeFixtures::class,
+            UserFixtures::class,
+        ];
     }
 }

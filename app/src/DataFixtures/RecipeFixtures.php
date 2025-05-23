@@ -1,7 +1,4 @@
 <?php
-/**
- * Recipe fixtures.
- */
 
 namespace App\DataFixtures;
 
@@ -16,16 +13,9 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
  */
 class RecipeFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
-    /**
-     * Load data.
-     *
-     * @psalm-suppress PossiblyNullPropertyFetch
-     * @psalm-suppress PossiblyNullReference
-     * @psalm-suppress UnusedClosureParam
-     */
     public function loadData(): void
     {
-        if (null === $this->manager || null === $this->faker) {
+        if (!$this->manager instanceof \Doctrine\Persistence\ObjectManager || !$this->faker instanceof \Faker\Generator) {
             return;
         }
 
@@ -42,24 +32,28 @@ class RecipeFixtures extends AbstractBaseFixtures implements DependentFixtureInt
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
+
             /** @var Category $category */
-            $category = $this->getRandomReference('categories');
+            $category = $this->getRandomReference('categories', Category::class);
             $recipe->setCategory($category);
+
             $recipe->setContent($this->faker->paragraph(15));
             $recipe->setAverageRating(0);
 
-            /** @var array<array-key, Tag> $tags */
-            $tags = $this->getRandomReferences(
+            /** @var Tag[] $tags */
+            $tags = $this->getRandomReferenceList(
                 'tags',
+                Tag::class,
                 $this->faker->numberBetween(1, 5)
             );
             foreach ($tags as $tag) {
                 $recipe->addTag($tag);
             }
 
-            /** @var array<array-key, Ingredient> $ingredients */
-            $ingredients = $this->getRandomReferences(
+            /** @var Ingredient[] $ingredients */
+            $ingredients = $this->getRandomReferenceList(
                 'ingredients',
+                Ingredient::class,
                 $this->faker->numberBetween(3, 10)
             );
             foreach ($ingredients as $ingredient) {
@@ -73,15 +67,17 @@ class RecipeFixtures extends AbstractBaseFixtures implements DependentFixtureInt
     }
 
     /**
-     * This method must return an array of fixtures classes
-     * on which the implementing class depends on.
+     * This method must return an array of fixture classes
+     * on which this class depends.
      *
-     * @return string[] of dependencies
-     *
-     * @psalm-return array{0: CategoryFixtures::class}
+     * @return string[]
      */
     public function getDependencies(): array
     {
-        return [CategoryFixtures::class];
+        return [
+            CategoryFixtures::class,
+            TagFixtures::class,
+            IngredientFixtures::class,
+        ];
     }
 }

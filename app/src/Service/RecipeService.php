@@ -135,14 +135,14 @@ class RecipeService implements RecipeServiceInterface
 
         if (!empty($filters['category_id'])) {
             $category = $this->categoryService->findOneById($filters['category_id']);
-            if (null !== $category) {
+            if ($category instanceof \App\Entity\Category) {
                 $resultFilters['category'] = $category;
             }
         }
 
         if (!empty($filters['tag_id'])) {
             $tag = $this->tagService->findOneById($filters['tag_id']);
-            if (null !== $tag) {
+            if ($tag instanceof \App\Entity\Tag) {
                 $resultFilters['tag'] = $tag;
             }
         }

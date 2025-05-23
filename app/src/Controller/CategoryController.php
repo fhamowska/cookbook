@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Category controller.
  */
@@ -68,7 +69,7 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/{id}',
+        '/category/{id}',
         name: 'category_show',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
@@ -86,7 +87,7 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/create',
+        '/category/create',
         name: 'category_create',
         methods: 'GET|POST',
     )]
@@ -121,7 +122,7 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[Route('/category/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Category $category): Response
     {
         $form = $this->createForm(
@@ -162,7 +163,7 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[Route('/category/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Category $category): Response
     {
         if (!$this->categoryService->canBeDeleted($category)) {

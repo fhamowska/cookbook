@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Comment controller.
  */
@@ -28,17 +29,14 @@ class CommentController extends AbstractController
      * Comment service.
      */
     private CommentServiceInterface $commentService;
-
     /**
      * Translator.
      */
     private TranslatorInterface $translator;
-
     /**
      * Recipe service.
      */
     private RecipeServiceInterface $recipeService;
-
     /**
      * Constructor.
      *
@@ -52,7 +50,6 @@ class CommentController extends AbstractController
         $this->translator = $translator;
         $this->recipeService = $recipeService;
     }
-
     /**
      * Create action.
      *
@@ -60,11 +57,11 @@ class CommentController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/create', name: 'comment_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
+    #[Route('/comment/create', name: 'comment_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
     public function create(Request $request): Response
     {
         $recipe = $this->recipeService->getById($request->get('id'));
-        if (null === $recipe) {
+        if (!$recipe instanceof \App\Entity\Recipe) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.recipe_not_found')
@@ -84,7 +81,7 @@ class CommentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recipe = $this->recipeService->getById($request->get('id'));
-            if (null === $recipe) {
+            if (!$recipe instanceof \App\Entity\Recipe) {
                 $this->addFlash(
                     'warning',
                     $this->translator->trans('message.recipe_not_found')
@@ -118,7 +115,6 @@ class CommentController extends AbstractController
             ]
         );
     }
-
     /**
      * Index action.
      *
@@ -137,7 +133,6 @@ class CommentController extends AbstractController
 
         return $this->render('comment/index.html.twig', ['pagination' => $pagination]);
     }
-
     /**
      * Delete action.
      *
@@ -147,7 +142,7 @@ class CommentController extends AbstractController
      * @return Response HTTP response
      */
     #[IsGranted('DELETE', subject: 'comment')]
-    #[Route('/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[Route('/comment/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Comment $comment): Response
     {
         $form = $this->createForm(FormType::class, $comment, [

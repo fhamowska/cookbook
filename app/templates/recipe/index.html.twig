@@ -7,14 +7,11 @@
 {% block body %}
     <h1>{{ 'title.recipe_list'|trans }}</h1>
 
-    <div>
-        {% if is_granted('ROLE_ADMIN') %}
-            <a class="btn btn-outline-primary" href="{{ url('recipe_create') }}" class="button">
-                {{ 'action.create_recipe'|trans }}
-            </a>
-        {% endif %}
-    </div>
-
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-outline-primary button" href="{{ url('recipe_create') }}">
+            {{ 'action.create_recipe'|trans }}
+        </a>
+    {% endif %}
 
     {% if pagination is defined and pagination.items|length %}
 

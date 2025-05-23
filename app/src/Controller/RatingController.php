@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Rating controller.
  */
@@ -19,24 +20,20 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * Class RatingController.
  */
-#[Route('/rating')]
 class RatingController extends AbstractController
 {
     /**
      * Rating service.
      */
     private RatingServiceInterface $ratingService;
-
     /**
      * Translator.
      */
     private TranslatorInterface $translator;
-
     /**
      * Recipe service.
      */
     private RecipeServiceInterface $recipeService;
-
     /**
      * Constructor.
      *
@@ -58,11 +55,11 @@ class RatingController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/create', name: 'rating_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
+    #[Route('/rating/create', name: 'rating_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
     public function create(Request $request): Response
     {
         $recipe = $this->recipeService->getById($request->get('id'));
-        if (null === $recipe) {
+        if (!$recipe instanceof \App\Entity\Recipe) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.recipe_not_found')
@@ -82,7 +79,7 @@ class RatingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recipe = $this->recipeService->getById($request->get('id'));
-            if (null === $recipe) {
+            if (!$recipe instanceof \App\Entity\Recipe) {
                 $this->addFlash(
                     'warning',
                     $this->translator->trans('message.recipe_not_found')
