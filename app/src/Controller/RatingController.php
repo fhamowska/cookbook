@@ -34,6 +34,7 @@ class RatingController extends AbstractController
      * Recipe service.
      */
     private RecipeServiceInterface $recipeService;
+
     /**
      * Constructor.
      *

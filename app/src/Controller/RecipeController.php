@@ -204,6 +204,7 @@ class RecipeController extends AbstractController
             ]
         );
     }
+
     /**
      * Get filters from request.
      *

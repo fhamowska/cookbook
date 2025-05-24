@@ -77,6 +77,7 @@ class UserController extends AbstractController
 
         return $this->render('user/index.html.twig', ['pagination' => $pagination]);
     }
+
     /**
      * Edit action.
      *
@@ -98,6 +99,7 @@ class UserController extends AbstractController
                 'warning',
                 $this->translator->trans('message.record_not_found')
             );
+
             return $this->redirectToRoute('recipe_index');
         }
 
@@ -141,6 +143,7 @@ class UserController extends AbstractController
             ]
         );
     }
+
     /**
      * Delete action.
      *
@@ -214,6 +217,7 @@ class UserController extends AbstractController
             ]
         );
     }
+
     /**
      * EditEmail action.
      *
@@ -235,6 +239,7 @@ class UserController extends AbstractController
                 'warning',
                 $this->translator->trans('message.record_not_found')
             );
+
             return $this->redirectToRoute('recipe_index');
         }
 

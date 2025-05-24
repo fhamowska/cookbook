@@ -37,6 +37,7 @@ class CommentController extends AbstractController
      * Recipe service.
      */
     private RecipeServiceInterface $recipeService;
+
     /**
      * Constructor.
      *
@@ -50,6 +51,7 @@ class CommentController extends AbstractController
         $this->translator = $translator;
         $this->recipeService = $recipeService;
     }
+
     /**
      * Create action.
      *
@@ -115,6 +117,7 @@ class CommentController extends AbstractController
             ]
         );
     }
+
     /**
      * Index action.
      *
@@ -133,6 +136,7 @@ class CommentController extends AbstractController
 
         return $this->render('comment/index.html.twig', ['pagination' => $pagination]);
     }
+
     /**
      * Delete action.
      *
