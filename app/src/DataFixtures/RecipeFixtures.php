@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Recipe fixtures.
+ */
+
 namespace App\DataFixtures;
 
 use App\Entity\Category;
@@ -13,6 +17,9 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
  */
 class RecipeFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
+    /**
+     * Load data.
+     */
     public function loadData(): void
     {
         if (!$this->manager instanceof \Doctrine\Persistence\ObjectManager || !$this->faker instanceof \Faker\Generator) {

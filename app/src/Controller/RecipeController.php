@@ -33,6 +33,7 @@ class RecipeController extends AbstractController
     public function __construct(private readonly RecipeServiceInterface $recipeService, private readonly TranslatorInterface $translator)
     {
     }
+
     /**
      * Index action.
      *
@@ -51,6 +52,7 @@ class RecipeController extends AbstractController
 
         return $this->render('recipe/index.html.twig', ['pagination' => $pagination]);
     }
+
     /**
      * Show action.
      *
@@ -72,6 +74,7 @@ class RecipeController extends AbstractController
 
         return $this->render('recipe/show.html.twig', ['recipe' => $recipe]);
     }
+
     /**
      * Create action.
      *
@@ -104,6 +107,7 @@ class RecipeController extends AbstractController
 
         return $this->render('recipe/create.html.twig', ['form' => $form->createView()]);
     }
+
     /**
      * Edit action.
      *
@@ -145,6 +149,7 @@ class RecipeController extends AbstractController
             ]
         );
     }
+
     /**
      * Delete action.
      *
@@ -186,6 +191,7 @@ class RecipeController extends AbstractController
             ]
         );
     }
+
     /**
      * Get filters from request.
      *

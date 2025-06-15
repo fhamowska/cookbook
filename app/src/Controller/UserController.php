@@ -15,7 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Repository\CommentRepository;
@@ -36,6 +35,7 @@ class UserController extends AbstractController
     public function __construct(private readonly UserServiceInterface $userService, private readonly TranslatorInterface $translator, private readonly UserPasswordHasherInterface $passwordHasher, private readonly CommentRepository $commentRepository)
     {
     }
+
     /**
      * Index action.
      *
@@ -51,6 +51,7 @@ class UserController extends AbstractController
 
         return $this->render('user/index.html.twig', ['pagination' => $pagination]);
     }
+
     /**
      * Edit action.
      *
@@ -116,6 +117,7 @@ class UserController extends AbstractController
             ]
         );
     }
+
     /**
      * Delete action.
      *
@@ -189,6 +191,7 @@ class UserController extends AbstractController
             ]
         );
     }
+
     /**
      * EditEmail action.
      *

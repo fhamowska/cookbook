@@ -25,7 +25,7 @@ class RecipeType extends AbstractType
     /**
      * Constructor.
      *
-     * @param TagsDataTransformer        $tagsDataTransformer       Tags data transformer
+     * @param TagsDataTransformer        $tagsDataTransformer        Tags data transformer
      * @param IngredientsDataTransformer $ingredientsDataTransformer Ingredient data transformer
      */
     public function __construct(private readonly TagsDataTransformer $tagsDataTransformer, private readonly IngredientsDataTransformer $ingredientsDataTransformer)
@@ -59,7 +59,7 @@ class RecipeType extends AbstractType
             EntityType::class,
             [
                 'class' => Category::class,
-                'choice_label' => fn($category): string => $category->getTitle(),
+                'choice_label' => fn ($category): string => $category->getTitle(),
                 'label' => 'label.category',
                 'placeholder' => 'label.none',
                 'required' => true,
