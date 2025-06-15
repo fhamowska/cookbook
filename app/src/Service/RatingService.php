@@ -20,25 +20,13 @@ use Knp\Component\Pager\PaginatorInterface;
 class RatingService implements RatingServiceInterface
 {
     /**
-     * Rating repository.
-     */
-    private RatingRepository $ratingRepository;
-
-    /**
-     * Paginator.
-     */
-    private PaginatorInterface $paginator;
-
-    /**
      * Constructor.
      *
      * @param RatingRepository   $ratingRepository Rating repository
      * @param PaginatorInterface $paginator        Paginator
      */
-    public function __construct(RatingRepository $ratingRepository, PaginatorInterface $paginator)
+    public function __construct(private readonly RatingRepository $ratingRepository, private readonly PaginatorInterface $paginator)
     {
-        $this->ratingRepository = $ratingRepository;
-        $this->paginator = $paginator;
     }
 
     /**

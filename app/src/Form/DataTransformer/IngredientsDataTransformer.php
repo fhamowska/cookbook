@@ -19,18 +19,12 @@ use Symfony\Component\Form\DataTransformerInterface;
 class IngredientsDataTransformer implements DataTransformerInterface
 {
     /**
-     * Ingredient service.
-     */
-    private IngredientServiceInterface $ingredientService;
-
-    /**
      * Constructor.
      *
      * @param IngredientServiceInterface $ingredientService Ingredient service
      */
-    public function __construct(IngredientServiceInterface $ingredientService)
+    public function __construct(private readonly IngredientServiceInterface $ingredientService)
     {
-        $this->ingredientService = $ingredientService;
     }
 
     /**

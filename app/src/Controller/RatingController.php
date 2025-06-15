@@ -23,30 +23,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RatingController extends AbstractController
 {
     /**
-     * Rating service.
-     */
-    private RatingServiceInterface $ratingService;
-    /**
-     * Translator.
-     */
-    private TranslatorInterface $translator;
-    /**
-     * Recipe service.
-     */
-    private RecipeServiceInterface $recipeService;
-
-    /**
      * Constructor.
      *
      * @param RatingServiceInterface $ratingService Rating service
      * @param TranslatorInterface    $translator    Translator
      * @param RecipeServiceInterface $recipeService Recipe service
      */
-    public function __construct(RatingServiceInterface $ratingService, TranslatorInterface $translator, RecipeServiceInterface $recipeService)
+    public function __construct(private readonly RatingServiceInterface $ratingService, private readonly TranslatorInterface $translator, private readonly RecipeServiceInterface $recipeService)
     {
-        $this->ratingService = $ratingService;
-        $this->translator = $translator;
-        $this->recipeService = $recipeService;
     }
 
     /**
@@ -56,7 +40,7 @@ class RatingController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/rating/create', name: 'rating_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
+    #[\Symfony\Component\Routing\Attribute\Route('/rating/create', name: 'rating_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
     public function create(Request $request): Response
     {
         $recipe = $this->recipeService->getById($request->get('id'));

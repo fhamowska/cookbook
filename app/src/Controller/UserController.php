@@ -23,29 +23,8 @@ use App\Repository\CommentRepository;
 /**
  * Class UserController.
  */
-#[Route('/user')]
 class UserController extends AbstractController
 {
-    /**
-     * Password hasher.
-     */
-    private UserPasswordHasherInterface $passwordHasher;
-
-    /**
-     * User service.
-     */
-    private UserServiceInterface $userService;
-
-    /**
-     * Translator.
-     */
-    private TranslatorInterface $translator;
-
-    /**
-     * Comment repository.
-     */
-    private CommentRepository $commentRepository;
-
     /**
      * Constructor.
      *
@@ -54,14 +33,9 @@ class UserController extends AbstractController
      * @param UserPasswordHasherInterface $passwordHasher    Password hasher
      * @param CommentRepository           $commentRepository Comment repository
      */
-    public function __construct(UserServiceInterface $userService, TranslatorInterface $translator, UserPasswordHasherInterface $passwordHasher, CommentRepository $commentRepository)
+    public function __construct(private readonly UserServiceInterface $userService, private readonly TranslatorInterface $translator, private readonly UserPasswordHasherInterface $passwordHasher, private readonly CommentRepository $commentRepository)
     {
-        $this->userService = $userService;
-        $this->translator = $translator;
-        $this->passwordHasher = $passwordHasher;
-        $this->commentRepository = $commentRepository;
     }
-
     /**
      * Index action.
      *
@@ -70,14 +44,13 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[IsGranted('ROLE_ADMIN')]
-    #[Route('/user/all', name: 'user_index', methods: 'GET')]
+    #[\Symfony\Component\Routing\Attribute\Route('/user/user/all', name: 'user_index', methods: 'GET')]
     public function index(Request $request): Response
     {
         $pagination = $this->userService->getPaginatedList($request->query->getInt('page', 1));
 
         return $this->render('user/index.html.twig', ['pagination' => $pagination]);
     }
-
     /**
      * Edit action.
      *
@@ -86,8 +59,8 @@ class UserController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(
-        '/user/{id}/edit_password',
+    #[\Symfony\Component\Routing\Attribute\Route(
+        '/user/user/{id}/edit_password',
         name: 'user_edit_password',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'
@@ -143,7 +116,6 @@ class UserController extends AbstractController
             ]
         );
     }
-
     /**
      * Delete action.
      *
@@ -152,8 +124,8 @@ class UserController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(
-        '/user/{id}/delete',
+    #[\Symfony\Component\Routing\Attribute\Route(
+        '/user/user/{id}/delete',
         name: 'user_delete',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'
@@ -217,7 +189,6 @@ class UserController extends AbstractController
             ]
         );
     }
-
     /**
      * EditEmail action.
      *
@@ -226,8 +197,8 @@ class UserController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(
-        '/user/{id}/edit_email',
+    #[\Symfony\Component\Routing\Attribute\Route(
+        '/user/user/{id}/edit_email',
         name: 'user_edit_email',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'

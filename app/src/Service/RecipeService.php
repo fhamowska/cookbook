@@ -18,26 +18,6 @@ use Knp\Component\Pager\PaginatorInterface;
 class RecipeService implements RecipeServiceInterface
 {
     /**
-     * Category service.
-     */
-    private CategoryServiceInterface $categoryService;
-
-    /**
-     * Paginator.
-     */
-    private PaginatorInterface $paginator;
-
-    /**
-     * Tag service.
-     */
-    private TagServiceInterface $tagService;
-
-    /**
-     * Recipe repository.
-     */
-    private RecipeRepository $recipeRepository;
-
-    /**
      * Constructor.
      *
      * @param CategoryServiceInterface $categoryService  Category service
@@ -45,12 +25,8 @@ class RecipeService implements RecipeServiceInterface
      * @param TagServiceInterface      $tagService       Tag service
      * @param RecipeRepository         $recipeRepository Recipe repository
      */
-    public function __construct(CategoryServiceInterface $categoryService, PaginatorInterface $paginator, TagServiceInterface $tagService, RecipeRepository $recipeRepository)
+    public function __construct(private readonly CategoryServiceInterface $categoryService, private readonly PaginatorInterface $paginator, private readonly TagServiceInterface $tagService, private readonly RecipeRepository $recipeRepository)
     {
-        $this->categoryService = $categoryService;
-        $this->paginator = $paginator;
-        $this->tagService = $tagService;
-        $this->recipeRepository = $recipeRepository;
     }
 
     /**

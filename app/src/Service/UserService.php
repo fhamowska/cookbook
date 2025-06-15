@@ -18,25 +18,13 @@ use Knp\Component\Pager\PaginatorInterface;
 class UserService implements UserServiceInterface
 {
     /**
-     * User repository.
-     */
-    private UserRepository $userRepository;
-
-    /**
-     * Paginator.
-     */
-    private PaginatorInterface $paginator;
-
-    /**
      * Constructor.
      *
      * @param UserRepository     $userRepository User repository
      * @param PaginatorInterface $paginator      Paginator
      */
-    public function __construct(UserRepository $userRepository, PaginatorInterface $paginator)
+    public function __construct(private readonly UserRepository $userRepository, private readonly PaginatorInterface $paginator)
     {
-        $this->userRepository = $userRepository;
-        $this->paginator = $paginator;
     }
 
     /**

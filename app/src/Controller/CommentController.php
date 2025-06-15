@@ -22,22 +22,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * Class CommentController.
  */
-#[Route('/comment')]
 class CommentController extends AbstractController
 {
-    /**
-     * Comment service.
-     */
-    private CommentServiceInterface $commentService;
-    /**
-     * Translator.
-     */
-    private TranslatorInterface $translator;
-    /**
-     * Recipe service.
-     */
-    private RecipeServiceInterface $recipeService;
-
     /**
      * Constructor.
      *
@@ -45,13 +31,9 @@ class CommentController extends AbstractController
      * @param TranslatorInterface     $translator     Translator
      * @param RecipeServiceInterface  $recipeService  Recipe service
      */
-    public function __construct(CommentServiceInterface $commentService, TranslatorInterface $translator, RecipeServiceInterface $recipeService)
+    public function __construct(private readonly CommentServiceInterface $commentService, private readonly TranslatorInterface $translator, private readonly RecipeServiceInterface $recipeService)
     {
-        $this->commentService = $commentService;
-        $this->translator = $translator;
-        $this->recipeService = $recipeService;
     }
-
     /**
      * Create action.
      *
@@ -59,7 +41,7 @@ class CommentController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/comment/create', name: 'comment_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
+    #[\Symfony\Component\Routing\Attribute\Route('/comment/comment/create', name: 'comment_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
     public function create(Request $request): Response
     {
         $recipe = $this->recipeService->getById($request->get('id'));
@@ -117,7 +99,6 @@ class CommentController extends AbstractController
             ]
         );
     }
-
     /**
      * Index action.
      *
@@ -125,7 +106,7 @@ class CommentController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(name: 'comment_index', methods: 'GET')]
+    #[\Symfony\Component\Routing\Attribute\Route(name: 'comment_index', methods: 'GET')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function index(Request $request): Response
     {
@@ -136,7 +117,6 @@ class CommentController extends AbstractController
 
         return $this->render('comment/index.html.twig', ['pagination' => $pagination]);
     }
-
     /**
      * Delete action.
      *
@@ -146,7 +126,7 @@ class CommentController extends AbstractController
      * @return Response HTTP response
      */
     #[IsGranted('DELETE', subject: 'comment')]
-    #[Route('/comment/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[\Symfony\Component\Routing\Attribute\Route('/comment/comment/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Comment $comment): Response
     {
         $form = $this->createForm(FormType::class, $comment, [

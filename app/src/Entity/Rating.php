@@ -32,7 +32,7 @@ class Rating
     #[Assert\Type('integer')]
     #[Assert\NotBlank]
     #[Assert\Range(min: 1, max: 5)]
-    private ?int $value;
+    private ?int $value = null;
 
     /**
      * Recipe.
@@ -49,7 +49,7 @@ class Rating
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
-    private ?User $author;
+    private ?User $author = null;
 
     /**
      * Getter for id.

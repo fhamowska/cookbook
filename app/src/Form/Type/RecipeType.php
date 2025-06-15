@@ -23,25 +23,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class RecipeType extends AbstractType
 {
     /**
-     * Tags data transformer.
-     */
-    private TagsDataTransformer $tagsDataTransformer;
-
-    /**
-     * Ingredients data transformer.
-     */
-    private IngredientsDataTransformer $ingredientsDataTransformer;
-
-    /**
      * Constructor.
      *
      * @param TagsDataTransformer        $tagsDataTransformer       Tags data transformer
-     * @param IngredientsDataTransformer $ingredientDataTransformer Ingredient data transformer
+     * @param IngredientsDataTransformer $ingredientsDataTransformer Ingredient data transformer
      */
-    public function __construct(TagsDataTransformer $tagsDataTransformer, IngredientsDataTransformer $ingredientDataTransformer)
+    public function __construct(private readonly TagsDataTransformer $tagsDataTransformer, private readonly IngredientsDataTransformer $ingredientsDataTransformer)
     {
-        $this->tagsDataTransformer = $tagsDataTransformer;
-        $this->ingredientsDataTransformer = $ingredientDataTransformer;
     }
 
     /**
@@ -71,9 +59,7 @@ class RecipeType extends AbstractType
             EntityType::class,
             [
                 'class' => Category::class,
-                'choice_label' => function ($category): string {
-                    return $category->getTitle();
-                },
+                'choice_label' => fn($category): string => $category->getTitle(),
                 'label' => 'label.category',
                 'placeholder' => 'label.none',
                 'required' => true,

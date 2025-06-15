@@ -29,7 +29,7 @@ class RegistrationController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/register', name: 'app_register')]
+    #[\Symfony\Component\Routing\Attribute\Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();

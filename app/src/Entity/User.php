@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'users')]
 #[UniqueEntity(fields: ['email'])]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, \Stringable
 {
     /**
      * Primary key.
@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank]
     #[Assert\Email]
-    private ?string $email;
+    private ?string $email = null;
 
     /**
      * Roles.
@@ -50,14 +50,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Password.
      */
     #[ORM\Column(type: 'string')]
-    private ?string $password;
+    private ?string $password = null;
 
     /**
      * converter to string.
      *
      * @return string getUserIdentifier
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getUserIdentifier();
     }

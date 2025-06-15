@@ -15,38 +15,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * Class RecipeController.
  */
-#[Route('/recipe')]
 class RecipeController extends AbstractController
 {
-    /**
-     * Recipe service.
-     */
-    private RecipeServiceInterface $recipeService;
-
-    /**
-     * Translator.
-     */
-    private TranslatorInterface $translator;
-
     /**
      * Constructor.
      *
      * @param RecipeServiceInterface $recipeService Recipe service
      * @param TranslatorInterface    $translator    Translator
      */
-    public function __construct(RecipeServiceInterface $recipeService, TranslatorInterface $translator)
+    public function __construct(private readonly RecipeServiceInterface $recipeService, private readonly TranslatorInterface $translator)
     {
-        $this->recipeService = $recipeService;
-        $this->translator = $translator;
     }
-
     /**
      * Index action.
      *
@@ -54,7 +40,7 @@ class RecipeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(name: 'recipe_index', methods: 'GET')]
+    #[Route('/recipe', name: 'recipe_index', methods: ['GET'])]
     public function index(Request $request): Response
     {
         $filters = $this->getFilters($request);
@@ -65,7 +51,6 @@ class RecipeController extends AbstractController
 
         return $this->render('recipe/index.html.twig', ['pagination' => $pagination]);
     }
-
     /**
      * Show action.
      *
@@ -76,7 +61,7 @@ class RecipeController extends AbstractController
      *
      * @throws NonUniqueResultException
      */
-    #[Route('/recipe/{id}', name: 'recipe_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
+    #[Route('/recipe/recipe/{id}', name: 'recipe_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
     public function show(int $id, RatingServiceInterface $ratingService): Response
     {
         $recipe = $this->recipeService->getRecipeWithAssociations($id);
@@ -87,7 +72,6 @@ class RecipeController extends AbstractController
 
         return $this->render('recipe/show.html.twig', ['recipe' => $recipe]);
     }
-
     /**
      * Create action.
      *
@@ -95,7 +79,7 @@ class RecipeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/recipe/create', name: 'recipe_create', methods: 'GET|POST')]
+    #[Route('/recipe/recipe/create', name: 'recipe_create', methods: 'GET|POST')]
     #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
@@ -120,7 +104,6 @@ class RecipeController extends AbstractController
 
         return $this->render('recipe/create.html.twig', ['form' => $form->createView()]);
     }
-
     /**
      * Edit action.
      *
@@ -129,7 +112,7 @@ class RecipeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/recipe/{id}/edit', name: 'recipe_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[Route('/recipe/recipe/{id}/edit', name: 'recipe_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Recipe $recipe): Response
     {
@@ -162,7 +145,6 @@ class RecipeController extends AbstractController
             ]
         );
     }
-
     /**
      * Delete action.
      *
@@ -171,7 +153,7 @@ class RecipeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/recipe/{id}/delete', name: 'recipe_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[Route('/recipe/recipe/{id}/delete', name: 'recipe_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Recipe $recipe): Response
     {
@@ -204,7 +186,6 @@ class RecipeController extends AbstractController
             ]
         );
     }
-
     /**
      * Get filters from request.
      *

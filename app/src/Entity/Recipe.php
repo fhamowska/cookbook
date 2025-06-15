@@ -37,7 +37,7 @@ class Recipe
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?\DateTimeImmutable $createdAt;
+    private ?\DateTimeImmutable $createdAt = null;
 
     /**
      * Updated at.
@@ -45,7 +45,7 @@ class Recipe
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?\DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     /**
      * Title.
@@ -100,7 +100,7 @@ class Recipe
     #[Assert\Valid]
     #[ORM\Column(type: 'float', nullable: true)]
     #[Assert\Type('float')]
-    private ?float $averageRating;
+    private ?float $averageRating = null;
 
     /**
      * Ingredients.
