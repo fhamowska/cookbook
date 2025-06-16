@@ -11,8 +11,6 @@ use App\Repository\IngredientRepository;
 use App\Repository\RecipeRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 
 /**
  * Class IngredientService.
@@ -67,24 +65,6 @@ class IngredientService implements IngredientServiceInterface
     }
 
     /**
-     * Can Ingredient be deleted?
-     *
-     * @param Ingredient $ingredient Ingredient entity
-     *
-     * @return bool Result
-     */
-    public function canBeDeleted(Ingredient $ingredient): bool
-    {
-        try {
-            $result = $this->recipeRepository->countByIngredient($ingredient);
-
-            return $result <= 0;
-        } catch (NoResultException|NonUniqueResultException) {
-            return false;
-        }
-    }
-
-    /**
      * Find by title.
      *
      * @param string $title Ingredient title
@@ -93,6 +73,6 @@ class IngredientService implements IngredientServiceInterface
      */
     public function findOneByTitle(string $title): ?Ingredient
     {
-        return $this->ingredientRepository->findOneByTitle($title);
+        return $this->ingredientRepository->findOneBy(['title' => $title]);
     }
 }

@@ -25,6 +25,9 @@
     </testsuites>
 
     <coverage processUncoveredFiles="true">
+        <report>
+            <text outputFile="php://stdout" showUncoveredFiles="true" showOnlySummary="false"/>
+        </report>
         <include>
             <directory suffix=".php">src</directory>
         </include>

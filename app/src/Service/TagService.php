@@ -8,7 +8,6 @@ namespace App\Service;
 
 use App\Entity\Tag;
 use App\Repository\TagRepository;
-use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -72,7 +71,7 @@ class TagService implements TagServiceInterface
      */
     public function findOneByTitle(string $title): ?Tag
     {
-        return $this->tagRepository->findOneByTitle($title);
+        return $this->tagRepository->findOneBy(['title' => $title]);
     }
 
     /**
@@ -81,11 +80,9 @@ class TagService implements TagServiceInterface
      * @param int $id Tag id
      *
      * @return Tag|null Tag entity
-     *
-     * @throws NonUniqueResultException
      */
     public function findOneById(int $id): ?Tag
     {
-        return $this->tagRepository->findOneById($id);
+        return $this->tagRepository->findOneBy(['id' => $id]);
     }
 }

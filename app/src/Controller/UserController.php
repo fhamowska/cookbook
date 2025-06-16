@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Repository\CommentRepository;
@@ -44,7 +45,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[IsGranted('ROLE_ADMIN')]
-    #[\Symfony\Component\Routing\Attribute\Route('/user/user/all', name: 'user_index', methods: 'GET')]
+    #[Route('/user/user/all', name: 'user_index', methods: 'GET')]
     public function index(Request $request): Response
     {
         $pagination = $this->userService->getPaginatedList($request->query->getInt('page', 1));
@@ -60,7 +61,7 @@ class UserController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(
+    #[Route(
         '/user/user/{id}/edit_password',
         name: 'user_edit_password',
         requirements: ['id' => '[1-9]\d*'],
@@ -126,7 +127,7 @@ class UserController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(
+    #[Route(
         '/user/user/{id}/delete',
         name: 'user_delete',
         requirements: ['id' => '[1-9]\d*'],
@@ -200,7 +201,7 @@ class UserController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(
+    #[Route(
         '/user/user/{id}/edit_email',
         name: 'user_edit_email',
         requirements: ['id' => '[1-9]\d*'],
