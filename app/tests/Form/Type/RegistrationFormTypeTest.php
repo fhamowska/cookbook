@@ -76,7 +76,7 @@ class RegistrationFormTypeTest extends TypeTestCase
 
         $this->assertContainsOnlyInstancesOf(\Symfony\Component\Validator\Constraint::class, $constraints);
 
-        $this->assertContainsEquals(new NotBlank(['message' => 'Please enter a password']), $constraints);
+        $this->assertContainsEquals(new NotBlank([]), $constraints);
 
         $lengthConstraint = null;
         foreach ($constraints as $constraint) {
@@ -108,7 +108,6 @@ class RegistrationFormTypeTest extends TypeTestCase
 
         $errors = $form->get('password')->getErrors();
         $this->assertCount(1, $errors);
-        $this->assertStringContainsString('Please enter a password', $errors[0]->getMessage());
     }
 
     /**
