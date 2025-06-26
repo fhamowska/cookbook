@@ -45,7 +45,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[IsGranted('ROLE_ADMIN')]
-    #[Route('/user/user/all', name: 'user_index', methods: 'GET')]
+    #[Route('/user/all', name: 'user_index', methods: 'GET')]
     public function index(Request $request): Response
     {
         $pagination = $this->userService->getPaginatedList($request->query->getInt('page', 1));
@@ -62,7 +62,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/user/user/{id}/edit_password',
+        '/user/{id}/edit_password',
         name: 'user_edit_password',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'
@@ -128,7 +128,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/user/user/{id}/delete',
+        '/user/{id}/delete',
         name: 'user_delete',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'
@@ -202,7 +202,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(
-        '/user/user/{id}/edit_email',
+        '/user/{id}/edit_email',
         name: 'user_edit_email',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'

@@ -69,7 +69,7 @@ class RecipeController extends AbstractController
      *
      * @throws NonUniqueResultException
      */
-    #[Route('/recipe/recipe/{id}', name: 'recipe_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
+    #[Route('/recipe/{id}', name: 'recipe_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
     public function show(int $id, RatingServiceInterface $ratingService): Response
     {
         $recipe = $this->recipeService->getRecipeWithAssociations($id);
@@ -88,7 +88,7 @@ class RecipeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/recipe/recipe/create', name: 'recipe_create', methods: 'GET|POST')]
+    #[Route('/recipe/create', name: 'recipe_create', methods: 'GET|POST')]
     #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
@@ -122,7 +122,7 @@ class RecipeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/recipe/recipe/{id}/edit', name: 'recipe_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[Route('/recipe/{id}/edit', name: 'recipe_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Recipe $recipe): Response
     {
@@ -164,7 +164,7 @@ class RecipeController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/recipe/recipe/{id}/delete', name: 'recipe_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[Route('/recipe/{id}/delete', name: 'recipe_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Recipe $recipe): Response
     {
