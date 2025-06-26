@@ -42,13 +42,18 @@ class RecipeController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/recipe', name: 'recipe_index', methods: ['GET'])]
-    public function index(Request $request): Response
+    public function index(Request $request, RatingServiceInterface $ratingService): Response
     {
         $filters = $this->getFilters($request);
         $pagination = $this->recipeService->getPaginatedList(
             $request->query->getInt('page', 1),
             $filters
         );
+
+        foreach ($pagination as $recipe) {
+            $averageRating = $ratingService->calculateAvg($recipe);
+            $recipe->setAverageRating($averageRating);
+        }
 
         return $this->render('recipe/index.html.twig', ['pagination' => $pagination]);
     }

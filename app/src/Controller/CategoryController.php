@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -39,7 +40,7 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(name: 'category_index', methods: 'GET')]
+    #[Route('/category', name: 'category_index', methods: 'GET')]
     public function index(Request $request): Response
     {
         $pagination = $this->categoryService->getPaginatedList($request->query->getInt('page', 1));
@@ -54,8 +55,8 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(
-        '/category/category/{id}',
+    #[Route(
+        '/category/{id}',
         name: 'category_show',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
@@ -72,8 +73,8 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[\Symfony\Component\Routing\Attribute\Route(
-        '/category/category/create',
+    #[Route(
+        '/category/create',
         name: 'category_create',
         methods: 'GET|POST',
     )]
@@ -108,7 +109,7 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[\Symfony\Component\Routing\Attribute\Route('/category/category/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[Route('/category/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Category $category): Response
     {
         $form = $this->createForm(
@@ -149,7 +150,7 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[\Symfony\Component\Routing\Attribute\Route('/category/category/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[Route('/category/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Category $category): Response
     {
         if (!$this->categoryService->canBeDeleted($category)) {
