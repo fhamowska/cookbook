@@ -161,6 +161,9 @@ class TagControllerTest extends WebTestCase
 
     /**
      * Test delete tag.
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function testDeleteTag(): void
     {
@@ -185,13 +188,12 @@ class TagControllerTest extends WebTestCase
         $this->assertNull($tagRepository->find($tagId));
     }
 
-
     /**
      * Create user helper.
      *
-     * @param array $roles
+     * @param array $roles roles
      *
-     * @return User
+     * @return User User
      *
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface

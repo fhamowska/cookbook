@@ -6,13 +6,13 @@
 
 namespace App\Tests\Repository;
 
+use App\Entity\Category;
 use App\Entity\Rating;
 use App\Entity\Recipe;
 use App\Entity\User;
-use App\Entity\Category;
 use App\Repository\RatingRepository;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Class RatingRepositoryTest.
@@ -24,8 +24,12 @@ class RatingRepositoryTest extends KernelTestCase
 
     /**
      * Helper to create a Category entity.
+     *
+     * @param string $title title
+     *
+     * @return Category Category
      */
-    private function createCategory(string $title = 'Default Category'): Category
+    public function createCategory(string $title = 'Default Category'): Category
     {
         $category = new Category();
         $category->setTitle($title);
@@ -37,8 +41,6 @@ class RatingRepositoryTest extends KernelTestCase
 
     /**
      * Test saving a Rating and finding it by ID.
-     *
-     * @return void
      */
     public function testSaveAndFind(): void
     {
@@ -199,7 +201,7 @@ class RatingRepositoryTest extends KernelTestCase
     }
 
     /**
-     * Tear down the test environment.
+     * This method is called after each test.
      */
     protected function tearDown(): void
     {

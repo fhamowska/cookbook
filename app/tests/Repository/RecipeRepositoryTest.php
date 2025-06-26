@@ -10,8 +10,8 @@ use App\Entity\Category;
 use App\Entity\Recipe;
 use App\Entity\Tag;
 use App\Repository\RecipeRepository;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Class RecipeRepositoryTest.
@@ -31,17 +31,17 @@ class RecipeRepositoryTest extends KernelTestCase
         $this->recipeRepository = $this->em->getRepository(Recipe::class);
     }
 
-
     /**
      * Helper method to create a Recipe entity with optional tags.
      *
-     * @param string $title
-     * @param string $content
-     * @param Category $category
-     * @param array $tags
-     * @return Recipe
+     * @param string   $title    title
+     * @param string   $content  content
+     * @param Category $category category
+     * @param array    $tags     tags
+     *
+     * @return Recipe recipe
      */
-    public function createRecipe(string $title, string $content, Category $category, array $tags = [],): Recipe
+    public function createRecipe(string $title, string $content, Category $category, array $tags = []): Recipe
     {
         $recipe = new Recipe();
         $recipe->setTitle($title);
