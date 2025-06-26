@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * User entity test.
+ */
+
 namespace App\Tests\Entity;
 
 use App\Entity\User;
@@ -8,12 +12,18 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
+    /**
+     * Test that ID is initially null.
+     */
     public function testIdInitiallyNull(): void
     {
         $user = new User();
         $this->assertNull($user->getId());
     }
 
+    /**
+     * Test setting and getting email and username identifiers.
+     */
     public function testEmailCanBeSetAndRetrieved(): void
     {
         $user = new User();
@@ -24,6 +34,9 @@ class UserTest extends TestCase
         $this->assertSame('user@example.com', $user->getUsername());
     }
 
+    /**
+     * Test setting and getting password.
+     */
     public function testPasswordCanBeSetAndRetrieved(): void
     {
         $user = new User();
@@ -32,12 +45,18 @@ class UserTest extends TestCase
         $this->assertSame('secure_password', $user->getPassword());
     }
 
+    /**
+     * Test default roles include ROLE_USER.
+     */
     public function testRolesIncludeRoleUserByDefault(): void
     {
         $user = new User();
         $this->assertContains(UserRole::ROLE_USER->value, $user->getRoles());
     }
 
+    /**
+     * Test setting and retrieving roles.
+     */
     public function testRolesCanBeSetAndRetrieved(): void
     {
         $user = new User();
@@ -48,6 +67,9 @@ class UserTest extends TestCase
         $this->assertContains(UserRole::ROLE_USER->value, $roles);
     }
 
+    /**
+     * Test hasRole method.
+     */
     public function testHasRole(): void
     {
         $user = new User();
@@ -57,12 +79,18 @@ class UserTest extends TestCase
         $this->assertFalse($user->hasRole(UserRole::ROLE_ADMIN->value));
     }
 
+    /**
+     * Test getSalt returns null.
+     */
     public function testGetSaltReturnsNull(): void
     {
         $user = new User();
         $this->assertNull($user->getSalt());
     }
 
+    /**
+     * Test eraseCredentials does not throw exception.
+     */
     public function testEraseCredentialsDoesNotThrow(): void
     {
         $user = new User();
@@ -70,11 +98,14 @@ class UserTest extends TestCase
         $this->assertTrue(true);
     }
 
+    /**
+     * Test __toString returns the email.
+     */
     public function testToStringReturnsEmail(): void
     {
         $user = new User();
         $user->setEmail('user@example.com');
 
-        $this->assertSame('user@example.com', (string)$user);
+        $this->assertSame('user@example.com', (string) $user);
     }
 }

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Registration form type test.
+ */
+
 namespace App\Tests\Form\Type;
 
 use App\Entity\User;
@@ -12,6 +16,9 @@ use Symfony\Component\Validator\Validation;
 
 class RegistrationFormTypeTest extends TypeTestCase
 {
+    /**
+     * Add validator extension to form.
+     */
     protected function getExtensions(): array
     {
         $validator = Validation::createValidator();
@@ -21,6 +28,9 @@ class RegistrationFormTypeTest extends TypeTestCase
         ];
     }
 
+    /**
+     * Test that form has email and password fields.
+     */
     public function testFormFieldsExist(): void
     {
         $form = $this->factory->create(RegistrationFormType::class);
@@ -29,6 +39,9 @@ class RegistrationFormTypeTest extends TypeTestCase
         $this->assertTrue($form->has('password'));
     }
 
+    /**
+     * Test password field is not mapped to entity.
+     */
     public function testPasswordFieldIsNotMapped(): void
     {
         $form = $this->factory->create(RegistrationFormType::class);
@@ -37,6 +50,9 @@ class RegistrationFormTypeTest extends TypeTestCase
         $this->assertFalse($passwordConfig->getMapped());
     }
 
+    /**
+     * Test submitting valid data binds email and ignores password mapping.
+     */
     public function testSubmitValidData(): void
     {
         $formData = [
@@ -56,6 +72,9 @@ class RegistrationFormTypeTest extends TypeTestCase
         $this->assertNull($user->getPassword());
     }
 
+    /**
+     * Test password field has NotBlank and Length constraints.
+     */
     public function testPasswordConstraints(): void
     {
         $form = $this->factory->create(RegistrationFormType::class);
@@ -80,6 +99,9 @@ class RegistrationFormTypeTest extends TypeTestCase
         $this->assertEquals(4096, $lengthConstraint->max);
     }
 
+    /**
+     * Test submitting invalid password triggers validation errors.
+     */
     public function testSubmitInvalidPasswordTriggersValidationErrors(): void
     {
         $formData = [

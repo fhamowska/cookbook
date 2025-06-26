@@ -1,32 +1,47 @@
 <?php
 
+/*
+ * Tag controller service test.
+ */
+
 namespace App\Tests\Controller;
 
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Repository\TagRepository;
 use App\Repository\UserRepository;
-use http\Client\Response;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class TagControllerTest.
+ */
 class TagControllerTest extends WebTestCase
 {
     private const TEST_ROUTE_INDEX = '/tag';
 
     private KernelBrowser $client;
 
+    /**
+     * Set up the test environment.
+     */
     protected function setUp(): void
     {
         $this->client = static::createClient();
     }
 
+    /**
+     * Test index() for anonymous user.
+     */
     public function testIndexRouteAnonymousUser(): void
     {
         $this->client->request('GET', self::TEST_ROUTE_INDEX);
         $this->assertResponseStatusCodeSame(302);
     }
 
+    /**
+     * Test index() for admin user.
+     */
     public function testIndexRouteAdminUser(): void
     {
         $adminUser = $this->createUser(['ROLE_USER', 'ROLE_ADMIN']);
@@ -36,6 +51,9 @@ class TagControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    /**
+     * Test index() for non-admin user.
+     */
     public function testIndexRouteNonAdminUser(): void
     {
         $user = $this->createUser(['ROLE_USER']);
@@ -45,6 +63,9 @@ class TagControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(403);
     }
 
+    /**
+     * Test show() for admin user.
+     */
     public function testShowRouteAdminUser(): void
     {
         $adminUser = $this->createUser(['ROLE_ADMIN', 'ROLE_USER']);
@@ -55,11 +76,14 @@ class TagControllerTest extends WebTestCase
         $tagRepository = static::getContainer()->get(TagRepository::class);
         $tagRepository->save($tag);
 
-        $this->client->request('GET', '/tag/' . $tag->getId());
+        $this->client->request('GET', '/tag/'.$tag->getId());
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Szczegóły tagu');
     }
 
+    /**
+     * Test show() for non-admin user.
+     */
     public function testShowRouteNonAdminUser(): void
     {
         $user = $this->createUser(['ROLE_USER']);
@@ -69,16 +93,19 @@ class TagControllerTest extends WebTestCase
 
         $tag = $tagRepository->findAll()[0] ?? null;
 
-        if ($tag === null) {
+        if (null === $tag) {
             $tag = new Tag();
             $tag->setTitle('Temporary Test Tag');
             $tagRepository->save($tag);
         }
 
-        $this->client->request('GET', '/tag/' . $tag->getId());
+        $this->client->request('GET', '/tag/'.$tag->getId());
         $this->assertResponseStatusCodeSame(403);
     }
 
+    /**
+     * Test create tag.
+     */
     public function testCreateTag(): void
     {
         $adminUser = $this->createUser(['ROLE_ADMIN', 'ROLE_USER']);
@@ -99,6 +126,9 @@ class TagControllerTest extends WebTestCase
         $this->assertNotNull($savedTag);
     }
 
+    /**
+     * Test edit tag.
+     */
     public function testEditTag(): void
     {
         $adminUser = $this->createUser(['ROLE_ADMIN', 'ROLE_USER']);
@@ -117,7 +147,7 @@ class TagControllerTest extends WebTestCase
             '_method' => 'PUT',
         ];
 
-        $this->client->request('POST', '/tag/' . $tag->getId() . '/edit', $postData);
+        $this->client->request('POST', '/tag/'.$tag->getId().'/edit', $postData);
 
         $this->assertResponseRedirects('/tag');
 
@@ -127,6 +157,9 @@ class TagControllerTest extends WebTestCase
         $this->assertSame('Edited Tag Title', $updatedTag->getTitle());
     }
 
+    /**
+     * Test delete tag.
+     */
     public function testDeleteTag(): void
     {
         $adminUser = $this->createUser(['ROLE_ADMIN', 'ROLE_USER']);
@@ -140,23 +173,24 @@ class TagControllerTest extends WebTestCase
 
         $tagId = $tag->getId();
 
-        $this->client->request('POST', '/tag/' . $tagId . '/delete', [
+        $this->client->request('POST', '/tag/'.$tagId.'/delete', [
             '_method' => 'DELETE',
             'form' => [],
         ]);
 
         $this->assertResponseStatusCodeSame(302);
         $this->assertResponseRedirects('/tag');
-
         $this->assertNull($tagRepository->find($tagId));
-
     }
 
+    /**
+     * Create user helper.
+     */
     private function createUser(array $roles): User
     {
         $passwordHasher = static::getContainer()->get('security.password_hasher');
         $user = new User();
-        $user->setEmail('user_' . uniqid() . '@example.com');
+        $user->setEmail('user_'.uniqid().'@example.com');
         $user->setRoles($roles);
         $user->setPassword(
             $passwordHasher->hashPassword(

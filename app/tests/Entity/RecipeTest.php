@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Recipe entity test.
+ */
+
 namespace App\Tests\Entity;
 
 use App\Entity\Category;
@@ -10,14 +14,23 @@ use App\Entity\Recipe;
 use App\Entity\Tag;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class RecipeTest.
+ */
 class RecipeTest extends TestCase
 {
+    /**
+     * Test that ID is initially null.
+     */
     public function testIdIsInitiallyNull(): void
     {
         $recipe = new Recipe();
         $this->assertNull($recipe->getId());
     }
 
+    /**
+     * Test setting and getting createdAt.
+     */
     public function testCreatedAtCanBeSetAndRetrieved(): void
     {
         $date = new \DateTimeImmutable();
@@ -27,6 +40,9 @@ class RecipeTest extends TestCase
         $this->assertSame($date, $recipe->getCreatedAt());
     }
 
+    /**
+     * Test setting and getting updatedAt.
+     */
     public function testUpdatedAtCanBeSetAndRetrieved(): void
     {
         $date = new \DateTimeImmutable();
@@ -36,6 +52,9 @@ class RecipeTest extends TestCase
         $this->assertSame($date, $recipe->getUpdatedAt());
     }
 
+    /**
+     * Test setting and getting title.
+     */
     public function testTitleCanBeSetAndRetrieved(): void
     {
         $recipe = new Recipe();
@@ -44,6 +63,9 @@ class RecipeTest extends TestCase
         $this->assertSame('Delicious Lasagna', $recipe->getTitle());
     }
 
+    /**
+     * Test setting and getting content.
+     */
     public function testContentCanBeSetAndRetrieved(): void
     {
         $recipe = new Recipe();
@@ -52,6 +74,9 @@ class RecipeTest extends TestCase
         $this->assertSame('Step 1: Do this...', $recipe->getContent());
     }
 
+    /**
+     * Test setting and getting category.
+     */
     public function testCategoryCanBeSetAndRetrieved(): void
     {
         $category = new Category();
@@ -61,6 +86,9 @@ class RecipeTest extends TestCase
         $this->assertSame($category, $recipe->getCategory());
     }
 
+    /**
+     * Test adding and removing tags.
+     */
     public function testTagsCanBeAddedAndRemoved(): void
     {
         $recipe = new Recipe();
@@ -73,6 +101,9 @@ class RecipeTest extends TestCase
         $this->assertFalse($recipe->getTags()->contains($tag));
     }
 
+    /**
+     * Test adding and removing ingredients.
+     */
     public function testIngredientsCanBeAddedAndRemoved(): void
     {
         $recipe = new Recipe();
@@ -85,6 +116,9 @@ class RecipeTest extends TestCase
         $this->assertFalse($recipe->getIngredients()->contains($ingredient));
     }
 
+    /**
+     * Test adding and removing comments.
+     */
     public function testCommentsCanBeAddedAndRemoved(): void
     {
         $recipe = new Recipe();
@@ -99,6 +133,9 @@ class RecipeTest extends TestCase
         $this->assertNull($comment->getRecipe());
     }
 
+    /**
+     * Test adding and removing ratings.
+     */
     public function testRatingsCanBeAddedAndRemoved(): void
     {
         $recipe = new Recipe();
@@ -113,6 +150,9 @@ class RecipeTest extends TestCase
         $this->assertNull($rating->getRecipe());
     }
 
+    /**
+     * Test setting and getting average rating.
+     */
     public function testAverageRatingCanBeSetAndRetrieved(): void
     {
         $recipe = new Recipe();
@@ -121,6 +161,9 @@ class RecipeTest extends TestCase
         $this->assertSame(4.5, $recipe->getAverageRating());
     }
 
+    /**
+     * Test that initial collections are empty.
+     */
     public function testInitialCollectionsAreEmpty(): void
     {
         $recipe = new Recipe();

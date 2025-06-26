@@ -141,4 +141,3 @@ class CategoryControllerTest extends WebTestCase
         return $user;
     }
 }
-

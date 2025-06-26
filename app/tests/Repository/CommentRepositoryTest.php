@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Comment repository test.
+ */
+
 namespace App\Tests\Repository;
 
 use App\Entity\Comment;
@@ -11,11 +15,17 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Class CommentRepositoryTest.
+ */
 class CommentRepositoryTest extends KernelTestCase
 {
     private EntityManagerInterface $em;
     private CommentRepository $repo;
 
+    /**
+     * Setup before each test.
+     */
     protected function setUp(): void
     {
         self::bootKernel();
@@ -23,6 +33,9 @@ class CommentRepositoryTest extends KernelTestCase
         $this->repo = $this->em->getRepository(Comment::class);
     }
 
+    /**
+     * Test saving a Comment entity.
+     */
     public function testSave(): void
     {
         $user = new User();
@@ -54,6 +67,9 @@ class CommentRepositoryTest extends KernelTestCase
         $this->assertInstanceOf(Comment::class, $this->repo->find($comment->getId()));
     }
 
+    /**
+     * Test deleting a Comment entity.
+     */
     public function testDelete(): void
     {
         $user = new User();
@@ -86,6 +102,9 @@ class CommentRepositoryTest extends KernelTestCase
         $this->assertNull($this->repo->find($id));
     }
 
+    /**
+     * Test queryAll method returns a QueryBuilder instance with proper joins.
+     */
     public function testQueryAll(): void
     {
         $qb = $this->repo->queryAll();
@@ -101,6 +120,9 @@ class CommentRepositoryTest extends KernelTestCase
         $this->assertIsArray($results);
     }
 
+    /**
+     * Test queryByAuthor returns comments only for the specified author.
+     */
     public function testQueryByAuthor(): void
     {
         $user = new User();
@@ -139,6 +161,9 @@ class CommentRepositoryTest extends KernelTestCase
         }
     }
 
+    /**
+     * Test the private method getOrCreateQueryBuilder.
+     */
     public function testGetOrCreateQueryBuilder(): void
     {
         $qb = (new \ReflectionMethod($this->repo, 'getOrCreateQueryBuilder'))->invoke($this->repo, null);
@@ -149,11 +174,17 @@ class CommentRepositoryTest extends KernelTestCase
         $this->assertSame($existingQb, $returnedQb);
     }
 
+    /**
+     * Test constant PAGINATOR_ITEMS_PER_PAGE is set to 10.
+     */
     public function testPaginatorItemsPerPageConstant(): void
     {
         $this->assertSame(10, CommentRepository::PAGINATOR_ITEMS_PER_PAGE);
     }
 
+    /**
+     * Tear down entity manager after tests.
+     */
     protected function tearDown(): void
     {
         parent::tearDown();

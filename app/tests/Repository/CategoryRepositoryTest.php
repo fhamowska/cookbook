@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Category repository test.
+ */
+
 namespace App\Tests\Repository;
 
 use App\Entity\Category;
@@ -15,6 +19,9 @@ class CategoryRepositoryTest extends KernelTestCase
     private EntityManagerInterface $entityManager;
     private CategoryRepository $repository;
 
+    /**
+     * Boot kernel and initialize entity manager and repository.
+     */
     protected function setUp(): void
     {
         self::bootKernel();
@@ -26,6 +33,9 @@ class CategoryRepositoryTest extends KernelTestCase
         $this->repository = $this->entityManager->getRepository(Category::class);
     }
 
+    /**
+     * Test saving and finding a Category entity.
+     */
     public function testSaveAndFind(): void
     {
         $category = new Category();
@@ -42,6 +52,9 @@ class CategoryRepositoryTest extends KernelTestCase
         $this->assertSame('Test Category', $found->getTitle());
     }
 
+    /**
+     * Test deleting a Category entity.
+     */
     public function testDelete(): void
     {
         $category = new Category();
@@ -59,6 +72,9 @@ class CategoryRepositoryTest extends KernelTestCase
         $this->assertNull($found);
     }
 
+    /**
+     * Test querying all Category entities.
+     */
     public function testQueryAll(): void
     {
         $category = new Category();
@@ -76,6 +92,9 @@ class CategoryRepositoryTest extends KernelTestCase
         $this->assertInstanceOf(Category::class, $result[0]);
     }
 
+    /**
+     * Close entity manager after tests.
+     */
     protected function tearDown(): void
     {
         parent::tearDown();

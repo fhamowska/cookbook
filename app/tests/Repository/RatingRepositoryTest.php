@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Rating repository test.
+ */
+
 namespace App\Tests\Repository;
 
 use App\Entity\Rating;
@@ -10,11 +14,17 @@ use App\Repository\RatingRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Class RatingRepositoryTest.
+ */
 class RatingRepositoryTest extends KernelTestCase
 {
     private EntityManagerInterface $em;
     private RatingRepository $ratingRepository;
 
+    /**
+     * Set up the test environment.
+     */
     protected function setUp(): void
     {
         self::bootKernel();
@@ -22,15 +32,22 @@ class RatingRepositoryTest extends KernelTestCase
         $this->ratingRepository = $this->em->getRepository(Rating::class);
     }
 
+    /**
+     * Helper to create a Category entity.
+     */
     private function createCategory(string $title = 'Default Category'): Category
     {
         $category = new Category();
         $category->setTitle($title);
         $this->em->persist($category);
         $this->em->flush();
+
         return $category;
     }
 
+    /**
+     * Test saving a Rating and finding it by ID.
+     */
     public function testSaveAndFind(): void
     {
         $category = $this->createCategory('Test Category');
@@ -59,6 +76,9 @@ class RatingRepositoryTest extends KernelTestCase
         $this->assertNotNull($rating->getId());
     }
 
+    /**
+     * Test deleting a Rating entity.
+     */
     public function testDelete(): void
     {
         $category = $this->createCategory();
@@ -92,6 +112,9 @@ class RatingRepositoryTest extends KernelTestCase
         $this->assertNull($deleted);
     }
 
+    /**
+     * Test queryAll method returns a QueryBuilder and results array.
+     */
     public function testQueryAll(): void
     {
         $qb = $this->ratingRepository->queryAll();
@@ -101,6 +124,9 @@ class RatingRepositoryTest extends KernelTestCase
         $this->assertIsArray($results);
     }
 
+    /**
+     * Test queryByAuthor method filters Ratings by author User.
+     */
     public function testQueryByAuthor(): void
     {
         $category = $this->createCategory();
@@ -134,6 +160,9 @@ class RatingRepositoryTest extends KernelTestCase
         $this->assertSame(3, $results[0]->getValue());
     }
 
+    /**
+     * Test calculating average rating value for a Recipe.
+     */
     public function testCalculateAvg(): void
     {
         $category = $this->createCategory();
@@ -177,6 +206,9 @@ class RatingRepositoryTest extends KernelTestCase
         $this->assertEquals(4.5, $avg);
     }
 
+    /**
+     * Tear down the test environment.
+     */
     protected function tearDown(): void
     {
         parent::tearDown();

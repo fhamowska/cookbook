@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Recipe repository test.
+ */
+
 namespace App\Tests\Repository;
 
 use App\Entity\Category;
@@ -9,11 +13,17 @@ use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Class RecipeRepositoryTest.
+ */
 class RecipeRepositoryTest extends KernelTestCase
 {
     private EntityManagerInterface $em;
     private RecipeRepository $recipeRepository;
 
+    /**
+     * Set up test environment.
+     */
     protected function setUp(): void
     {
         self::bootKernel();
@@ -21,11 +31,20 @@ class RecipeRepositoryTest extends KernelTestCase
         $this->recipeRepository = $this->em->getRepository(Recipe::class);
     }
 
+    /**
+     * Helper method to create a Recipe entity with optional tags.
+     *
+     * @param string $title
+     * @param string $content
+     * @param Category $category
+     * @param Tag[] $tags
+     * @return Recipe
+     */
     private function createRecipe(
         string $title,
         string $content,
         Category $category,
-        array $tags = []
+        array $tags = [],
     ): Recipe {
         $recipe = new Recipe();
         $recipe->setTitle($title);
@@ -43,6 +62,9 @@ class RecipeRepositoryTest extends KernelTestCase
         return $recipe;
     }
 
+    /**
+     * Test saving a Recipe and deleting it.
+     */
     public function testSaveAndDelete(): void
     {
         $category = new Category();
@@ -61,6 +83,9 @@ class RecipeRepositoryTest extends KernelTestCase
         $this->assertNull($this->recipeRepository->find($id));
     }
 
+    /**
+     * Test queryAll method with category filter.
+     */
     public function testQueryAllWithCategoryFilter(): void
     {
         $category = new Category();
@@ -78,6 +103,9 @@ class RecipeRepositoryTest extends KernelTestCase
         $this->assertInstanceOf(Recipe::class, $results[0]);
     }
 
+    /**
+     * Test queryAll method with tag filter.
+     */
     public function testQueryAllWithTagFilter(): void
     {
         $tag = new Tag();
@@ -99,6 +127,9 @@ class RecipeRepositoryTest extends KernelTestCase
         $this->assertTrue($results[0]->getTags()->contains($tag));
     }
 
+    /**
+     * Test fetching a Recipe with all its associations.
+     */
     public function testGetRecipeWithAssociations(): void
     {
         $category = new Category();
@@ -114,13 +145,16 @@ class RecipeRepositoryTest extends KernelTestCase
         $this->assertEquals('Pancakes', $fetchedRecipe->getTitle());
     }
 
+    /**
+     * Test counting recipes by a specific category.
+     */
     public function testCountByCategory(): void
     {
         $category = new Category();
         $category->setTitle('Soups');
         $this->em->persist($category);
 
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i < 2; ++$i) {
             $this->createRecipe("Soup $i", "Delicious soup number $i", $category);
         }
 
@@ -130,6 +164,9 @@ class RecipeRepositoryTest extends KernelTestCase
         $this->assertEquals(2, $count);
     }
 
+    /**
+     * Tear down the test environment.
+     */
     protected function tearDown(): void
     {
         parent::tearDown();

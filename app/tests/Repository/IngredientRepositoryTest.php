@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Ingredient repository test.
+ */
+
 namespace App\Tests\Repository;
 
 use App\Entity\Ingredient;
@@ -15,6 +19,9 @@ class IngredientRepositoryTest extends KernelTestCase
     private EntityManagerInterface $entityManager;
     private IngredientRepository $ingredientRepository;
 
+    /**
+     * Set up the test environment.
+     */
     protected function setUp(): void
     {
         self::bootKernel();
@@ -26,6 +33,9 @@ class IngredientRepositoryTest extends KernelTestCase
         $this->ingredientRepository = $this->entityManager->getRepository(Ingredient::class);
     }
 
+    /**
+     * Test saving an Ingredient entity.
+     */
     public function testSave(): void
     {
         $ingredient = new Ingredient();
@@ -42,6 +52,9 @@ class IngredientRepositoryTest extends KernelTestCase
         $this->assertSame('Flour', $fetched->getTitle());
     }
 
+    /**
+     * Test deleting an Ingredient entity.
+     */
     public function testDelete(): void
     {
         $ingredient = new Ingredient();
@@ -57,6 +70,9 @@ class IngredientRepositoryTest extends KernelTestCase
         $this->assertNull($this->ingredientRepository->find($id));
     }
 
+    /**
+     * Test queryAll method returns a QueryBuilder and fetches results.
+     */
     public function testQueryAll(): void
     {
         $qb = $this->ingredientRepository->queryAll();
@@ -68,6 +84,9 @@ class IngredientRepositoryTest extends KernelTestCase
         $this->assertIsArray($results);
     }
 
+    /**
+     * Tear down the test environment.
+     */
     protected function tearDown(): void
     {
         parent::tearDown();

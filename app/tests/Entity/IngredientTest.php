@@ -1,12 +1,22 @@
 <?php
 
+/*
+ * Ingredient entity test.
+ */
+
 namespace App\Tests\Entity;
 
 use App\Entity\Ingredient;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class IngredientTest.
+ */
 class IngredientTest extends TestCase
 {
+    /**
+     * Test setting and getting the title.
+     */
     public function testSetAndGetTitle(): void
     {
         $ingredient = new Ingredient();
@@ -15,6 +25,9 @@ class IngredientTest extends TestCase
         $this->assertSame('Salt', $ingredient->getTitle());
     }
 
+    /**
+     * Test setting and getting the createdAt value.
+     */
     public function testSetAndGetCreatedAt(): void
     {
         $ingredient = new Ingredient();
@@ -24,6 +37,9 @@ class IngredientTest extends TestCase
         $this->assertSame($date, $ingredient->getCreatedAt());
     }
 
+    /**
+     * Test setting and getting the updatedAt value.
+     */
     public function testSetAndGetUpdatedAt(): void
     {
         $ingredient = new Ingredient();
@@ -33,6 +49,9 @@ class IngredientTest extends TestCase
         $this->assertSame($date, $ingredient->getUpdatedAt());
     }
 
+    /**
+     * Test that initial ID is null.
+     */
     public function testInitialIdIsNull(): void
     {
         $ingredient = new Ingredient();

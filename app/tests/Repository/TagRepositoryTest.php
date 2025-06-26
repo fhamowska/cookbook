@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Tag repository test.
+ */
+
 namespace App\Tests\Repository;
 
 use App\Entity\Tag;
@@ -7,11 +11,17 @@ use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Class TagRepositoryTest.
+ */
 class TagRepositoryTest extends KernelTestCase
 {
     private EntityManagerInterface $em;
     private TagRepository $tagRepository;
 
+    /**
+     * Set up test environment.
+     */
     protected function setUp(): void
     {
         self::bootKernel();
@@ -19,6 +29,9 @@ class TagRepositoryTest extends KernelTestCase
         $this->tagRepository = $this->em->getRepository(Tag::class);
     }
 
+    /**
+     * Test saving a Tag and deleting it.
+     */
     public function testSaveAndDelete(): void
     {
         $tag = new Tag();
@@ -35,6 +48,9 @@ class TagRepositoryTest extends KernelTestCase
         $this->assertNull($this->tagRepository->find($id));
     }
 
+    /**
+     * Test that queryAll method returns Tag entities.
+     */
     public function testQueryAllReturnsTags(): void
     {
         $tag = new Tag();
@@ -51,6 +67,9 @@ class TagRepositoryTest extends KernelTestCase
         $this->assertInstanceOf(Tag::class, $tags[0]);
     }
 
+    /**
+     * Tear down the test environment.
+     */
     protected function tearDown(): void
     {
         parent::tearDown();

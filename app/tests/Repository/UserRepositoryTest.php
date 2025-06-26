@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * User repository test.
+ */
+
 namespace App\Tests\Repository;
 
 use App\Entity\User;
@@ -9,11 +13,17 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
+/**
+ * Class UserRepositoryTest.
+ */
 class UserRepositoryTest extends KernelTestCase
 {
     private EntityManagerInterface $em;
     private UserRepository $userRepository;
 
+    /**
+     * Set up test environment.
+     */
     protected function setUp(): void
     {
         self::bootKernel();
@@ -22,6 +32,9 @@ class UserRepositoryTest extends KernelTestCase
         $this->userRepository = $this->em->getRepository(User::class);
     }
 
+    /**
+     * Test saving a User entity and retrieving it.
+     */
     public function testSaveAndFind(): void
     {
         $user = new User();
@@ -39,6 +52,9 @@ class UserRepositoryTest extends KernelTestCase
         $this->assertSame('testuser@example.com', $foundUser->getEmail());
     }
 
+    /**
+     * Test deleting a User entity.
+     */
     public function testDelete(): void
     {
         $user = new User();
@@ -57,6 +73,9 @@ class UserRepositoryTest extends KernelTestCase
         $this->assertNull($deletedUser);
     }
 
+    /**
+     * Test queryAll returns a QueryBuilder instance.
+     */
     public function testQueryAll(): void
     {
         $qb = $this->userRepository->queryAll();
@@ -68,6 +87,9 @@ class UserRepositoryTest extends KernelTestCase
         $this->assertIsArray($results);
     }
 
+    /**
+     * Test upgrading a User's password.
+     */
     public function testUpgradePassword(): void
     {
         $user = new User();
@@ -86,6 +108,9 @@ class UserRepositoryTest extends KernelTestCase
         $this->assertSame($newHashedPassword, $updatedUser->getPassword());
     }
 
+    /**
+     * Test upgrading password with unsupported user throws exception.
+     */
     public function testUpgradePasswordWithUnsupportedUser(): void
     {
         $this->expectException(UnsupportedUserException::class);
@@ -95,6 +120,9 @@ class UserRepositoryTest extends KernelTestCase
         $this->userRepository->upgradePassword($mockUser, 'irrelevant');
     }
 
+    /**
+     * Tear down the test environment.
+     */
     protected function tearDown(): void
     {
         parent::tearDown();
