@@ -11,13 +11,13 @@ use App\Form\Type\RecipeType;
 use App\Service\RatingServiceInterface;
 use App\Service\RecipeServiceInterface;
 use Doctrine\ORM\NonUniqueResultException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * Class RecipeController.
@@ -37,7 +37,8 @@ class RecipeController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request $request HTTP Request
+     * @param Request                $request       HTTP Request
+     * @param RatingServiceInterface $ratingService Rating service
      *
      * @return Response HTTP response
      */

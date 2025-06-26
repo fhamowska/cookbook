@@ -14,20 +14,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Validation;
 
+/**
+ * RegistrationFormTypeTest class.
+ */
 class RegistrationFormTypeTest extends TypeTestCase
 {
-    /**
-     * Add validator extension to form.
-     */
-    protected function getExtensions(): array
-    {
-        $validator = Validation::createValidator();
-
-        return [
-            new ValidatorExtension($validator),
-        ];
-    }
-
     /**
      * Test that form has email and password fields.
      */
@@ -118,5 +109,19 @@ class RegistrationFormTypeTest extends TypeTestCase
         $errors = $form->get('password')->getErrors();
         $this->assertCount(1, $errors);
         $this->assertStringContainsString('Please enter a password', $errors[0]->getMessage());
+    }
+
+    /**
+     * Add validator extension to form.
+     *
+     * @return ValidatorExtension
+     */
+    protected function getExtensions(): array
+    {
+        $validator = Validation::createValidator();
+
+        return [
+            new ValidatorExtension($validator),
+        ];
     }
 }

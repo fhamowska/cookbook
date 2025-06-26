@@ -23,16 +23,6 @@ class RatingRepositoryTest extends KernelTestCase
     private RatingRepository $ratingRepository;
 
     /**
-     * Set up the test environment.
-     */
-    protected function setUp(): void
-    {
-        self::bootKernel();
-        $this->em = static::getContainer()->get('doctrine')->getManager();
-        $this->ratingRepository = $this->em->getRepository(Rating::class);
-    }
-
-    /**
      * Helper to create a Category entity.
      */
     private function createCategory(string $title = 'Default Category'): Category
@@ -47,6 +37,8 @@ class RatingRepositoryTest extends KernelTestCase
 
     /**
      * Test saving a Rating and finding it by ID.
+     *
+     * @return void
      */
     public function testSaveAndFind(): void
     {
@@ -213,5 +205,15 @@ class RatingRepositoryTest extends KernelTestCase
     {
         parent::tearDown();
         $this->em->close();
+    }
+
+    /**
+     * Set up the test environment.
+     */
+    protected function setUp(): void
+    {
+        self::bootKernel();
+        $this->em = static::getContainer()->get('doctrine')->getManager();
+        $this->ratingRepository = $this->em->getRepository(Rating::class);
     }
 }

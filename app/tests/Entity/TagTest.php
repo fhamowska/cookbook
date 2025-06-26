@@ -9,6 +9,9 @@ namespace App\Tests\Entity;
 use App\Entity\Tag;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * TagTest class.
+ */
 class TagTest extends TestCase
 {
     /**

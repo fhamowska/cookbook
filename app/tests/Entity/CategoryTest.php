@@ -1,12 +1,24 @@
 <?php
 
+/**
+ * Category entity test.
+ */
+
 namespace App\Tests\Entity;
 
 use App\Entity\Category;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class CategoryTest.
+ *
+ * Unit tests for the Category entity.
+ */
 class CategoryTest extends TestCase
 {
+    /**
+     * Test setting and getting the title.
+     */
     public function testCanSetAndGetTitle(): void
     {
         $category = new Category();
@@ -15,6 +27,9 @@ class CategoryTest extends TestCase
         $this->assertSame('Desserts', $category->getTitle());
     }
 
+    /**
+     * Test setting and getting the createdAt timestamp.
+     */
     public function testCanSetAndGetCreatedAt(): void
     {
         $now = new \DateTimeImmutable();
@@ -24,6 +39,9 @@ class CategoryTest extends TestCase
         $this->assertSame($now, $category->getCreatedAt());
     }
 
+    /**
+     * Test setting and getting the updatedAt timestamp.
+     */
     public function testCanSetAndGetUpdatedAt(): void
     {
         $now = new \DateTimeImmutable();
@@ -33,6 +51,9 @@ class CategoryTest extends TestCase
         $this->assertSame($now, $category->getUpdatedAt());
     }
 
+    /**
+     * Test that getId() initially returns null.
+     */
     public function testGetIdInitiallyReturnsNull(): void
     {
         $category = new Category();

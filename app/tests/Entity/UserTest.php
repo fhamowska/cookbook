@@ -10,6 +10,9 @@ use App\Entity\User;
 use App\Entity\Enum\UserRole;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * UserTest class.
+ */
 class UserTest extends TestCase
 {
     /**

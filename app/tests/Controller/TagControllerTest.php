@@ -10,6 +10,8 @@ use App\Entity\Tag;
 use App\Entity\User;
 use App\Repository\TagRepository;
 use App\Repository\UserRepository;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -183,8 +185,16 @@ class TagControllerTest extends WebTestCase
         $this->assertNull($tagRepository->find($tagId));
     }
 
+
     /**
      * Create user helper.
+     *
+     * @param array $roles
+     *
+     * @return User
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     private function createUser(array $roles): User
     {

@@ -31,21 +31,18 @@ class RecipeRepositoryTest extends KernelTestCase
         $this->recipeRepository = $this->em->getRepository(Recipe::class);
     }
 
+
     /**
      * Helper method to create a Recipe entity with optional tags.
      *
      * @param string $title
      * @param string $content
      * @param Category $category
-     * @param Tag[] $tags
+     * @param array $tags
      * @return Recipe
      */
-    private function createRecipe(
-        string $title,
-        string $content,
-        Category $category,
-        array $tags = [],
-    ): Recipe {
+    public function createRecipe(string $title, string $content, Category $category, array $tags = [],): Recipe
+    {
         $recipe = new Recipe();
         $recipe->setTitle($title);
         $recipe->setContent($content);
