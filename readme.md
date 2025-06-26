@@ -3,8 +3,8 @@
 
 ## Requirements
 
-- MySQL database server version 5.7
-- PHP parser version 7.4./package containing MySQL, PHP and Apache, e.g. XAMPP
+- MySQL database server version 8.3
+- PHP version 8.3
 - PhpStorm development environment
 
 ## Installation
